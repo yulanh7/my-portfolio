@@ -3,6 +3,7 @@ import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import ParticleBackground from "@/components/ParticleBackground";
 import PageDecorations from "@/components/PageDecorations";
+import MouseGlow from "@/components/MouseGlow";
 
 export const metadata: Metadata = {
   title: "Rachel Huang · Front-End Developer · Canberra",
@@ -45,6 +46,9 @@ export default function RootLayout({
 
         {/* Custom cursor */}
         <CustomCursor />
+
+        {/* Mouse glow — follows cursor with soft light */}
+        <MouseGlow />
 
         {/* Page content */}
         <main className="relative z-10">{children}</main>
