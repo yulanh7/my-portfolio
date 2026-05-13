@@ -4,7 +4,7 @@ export const personal = {
   name: "Rachel (Yulan) Huang",
   title: "Front-End Developer",
   subtitle: "React & Next.js · TypeScript · 5+ Years",
-  subtitleNote: "with full-stack project experience",
+  subtitleNote: "with Front-End project experience",
   location: "Canberra, Australia",
   status: "Open to work",
   bio: "Front-end developer with 5+ years building and maintaining WordPress and React/Next.js applications. Master of IT from UTS. Track record of owning projects end-to-end — from architecture to deployment — and translating technical decisions for non-technical teams.",
