@@ -16,12 +16,12 @@ export default function Hero() {
           <div className="flex-1 min-w-[280px]">
             {/* Location badge */}
             <div className="inline-flex items-center gap-1.5 text-xs text-text-secondary tracking-widest uppercase mb-5">
-              <span className="star-decoration">✦</span>
+              <span className="star-decoration text-accent-green">✦</span>
               {personal.location} · {personal.status}
             </div>
 
             {/* Name */}
-            <h1 className="mb-2">{personal.name}</h1>
+            <h1 className="mb-2 font-bold">{personal.name}</h1>
 
             {/* Role */}
             <h3 className="mb-5 text-text-primary font-bold border-l-accent text-text-secondary">

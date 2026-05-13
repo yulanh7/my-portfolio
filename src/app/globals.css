@@ -10,10 +10,12 @@
     --color-bg-primary: #fdfaf7; /* warm white — main background */
     --color-bg-secondary: #ede0d4; /* warm beige — cards, sections  */
     --color-bg-accent: #c9b5a5; /* deeper beige — sidebar stripe, borders */
-    --color-text-primary: #1a1008; /* near-black warm */
+    --color-text-primary: #3b2e2a; /* near-black warm */
     --color-text-secondary: #6b5c52; /* body copy, captions */
     --color-border: #d4c4b8; /* subtle dividers */
     --color-surface: #f5ede4; /* hover states, tag backgrounds */
+    --color-accent-green: #8ea5a3; /* sage green — cool accent */
+    --color-accent-brown: #b87c4e; /* warm brown — warm accent */
 
     /* ── Typography ── */
     --font-heading: "Cormorant Garamond", Georgia, serif;
@@ -258,9 +260,9 @@
   .skill-tag:hover {
     animation: none;
     transform: scale(1.04);
-    background: var(--color-bg-accent);
-    color: var(--color-text-primary);
-    border-color: var(--color-bg-accent);
+    background: var(--color-accent-green);
+    color: white;
+    border-color: var(--color-accent-green);
   }
 
   .skill-tag.large {
@@ -414,7 +416,7 @@
 
   .btn-contact:hover {
     background: var(--color-bg-secondary);
-    border-color: var(--color-bg-accent);
+    border-color: var(--color-accent-brown);
     transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
   }
@@ -429,7 +431,7 @@
 
   /* ── Accent Left Border — used for section titles and highlights ── */
   .border-l-accent {
-    border-left: 3px solid var(--color-text-secondary);
+    border-left: 3px solid var(--color-accent-brown);
     padding-left: 0.75rem;
   }
 

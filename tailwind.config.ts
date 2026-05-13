@@ -20,6 +20,8 @@ const config: Config = {
           secondary: "var(--color-text-secondary)",
         },
         border: "var(--color-border)",
+        "accent-green": "var(--color-accent-green)",
+        "accent-brown": "var(--color-accent-brown)",
       },
       fontFamily: {
         heading: "var(--font-heading)",

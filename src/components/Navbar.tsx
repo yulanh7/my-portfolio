@@ -77,7 +77,7 @@ export default function Navbar() {
 
         <a
           href="#"
-          className="absolute left-1/2 -translate-x-1/2 font-heading text-2xl text-text-primary tracking-tight hover:opacity-70 transition-opacity duration-300"
+          className="absolute left-1/2 -translate-x-1/2 font-heading text-2xl text-accent-brown tracking-tight hover:opacity-70 transition-opacity duration-300"
         >
           RH
         </a>

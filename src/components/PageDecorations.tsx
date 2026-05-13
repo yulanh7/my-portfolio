@@ -6,7 +6,7 @@ export default function PageDecorations() {
         aria-hidden="true"
         className="fixed top-6 right-8 z-10 flex items-center gap-3 pointer-events-none"
       >
-        <span className="text-lg text-text-primary opacity-60">✦</span>
+        <span className="text-lg text-accent-green opacity-60">✦</span>
         <svg
           width="60"
           height="60"
@@ -48,7 +48,7 @@ export default function PageDecorations() {
         aria-hidden="true"
         className="fixed bottom-10 right-10 z-10 pointer-events-none"
       >
-        <span className="text-2xl text-text-primary opacity-70">✦</span>
+        <span className="text-2xl text-accent-brown opacity-70">✦</span>
         <span className="text-xs text-text-primary opacity-40 absolute -top-3 -right-3">✦</span>
       </div>
 
