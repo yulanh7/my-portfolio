@@ -34,7 +34,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg-primary/95 backdrop-blur-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg-primary backdrop-blur-sm">
       <div className="container flex items-center justify-between h-16">
         {/* Left — contact icons */}
         <div className="flex items-center gap-5">
@@ -87,7 +87,7 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className={`text-xs font-medium tracking-widest uppercase transition-colors duration-300 ${
+              className={`text-xs font-medium tracking-widest uppercase transition-all duration-300 hover:-translate-y-0.5 ${
                 activeSection === link.href.replace("#", "")
                   ? "text-text-primary border-b border-text-primary pb-0.5"
                   : "text-text-secondary hover:text-text-primary"
