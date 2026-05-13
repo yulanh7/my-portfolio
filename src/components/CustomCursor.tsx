@@ -27,11 +27,11 @@ export default function CustomCursor() {
       animationId = requestAnimationFrame(animate)
     }
 
-    function addHover(e: Event) {
+    function addHover() {
       cursor?.classList.add('hover')
     }
 
-    function removeHover(e: Event) {
+    function removeHover() {
       cursor?.classList.remove('hover')
     }
 

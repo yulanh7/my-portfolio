@@ -4,44 +4,19 @@ import { personal } from "@/data/content";
 
 export default function Hero() {
   return (
-    <section
-      style={{
-        paddingTop: "7rem",
-        paddingBottom: "4rem",
-        borderBottom: "1px solid var(--color-border)",
-      }}
-    >
+    <section className="pt-28 pb-16 border-b border-border">
       <div className="container">
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            flexWrap: "wrap",
-            gap: "2rem",
-          }}
-        >
+        <div className="flex justify-between items-start flex-wrap gap-8">
           {/* Left — text */}
-          <div style={{ flex: "1", minWidth: "280px" }}>
+          <div className="flex-1 min-w-72">
             {/* Location badge */}
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.4rem",
-                fontSize: "0.78rem",
-                color: "var(--color-text-secondary)",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                marginBottom: "1.25rem",
-              }}
-            >
+            <div className="inline-flex items-center gap-1.5 text-xs text-text-secondary tracking-widest uppercase mb-5">
               <span className="star-decoration">✦</span>
               {personal.location} · {personal.status}
             </div>
 
             {/* Name */}
-            <h1 style={{ marginBottom: "0.75rem" }}>{personal.name}</h1>
+            <h1 className="mb-3">{personal.name}</h1>
 
             {/* Wave line */}
             <div className="wave-line">
@@ -55,35 +30,20 @@ export default function Hero() {
             </div>
 
             {/* Role */}
-            <h2
-              style={{
-                marginBottom: "0.4rem",
-                color: "var(--color-text-primary)",
-                fontWeight: 400,
-              }}
-            >
+            <h2 className="mb-1.5 text-text-primary font-normal">
               {personal.title}
             </h2>
-            <p
-              style={{
-                fontSize: "0.95rem",
-                color: "var(--color-text-secondary)",
-                marginBottom: "1.5rem",
-                letterSpacing: "0.02em",
-              }}
-            >
+            <p className="text-sm text-text-secondary mb-6 tracking-wide">
               {personal.subtitle}
               &nbsp;·&nbsp;
               <em>{personal.subtitleNote}</em>
             </p>
 
             {/* Bio */}
-            <p style={{ maxWidth: "520px", marginBottom: "2rem" }}>
-              {personal.bio}
-            </p>
+            <p className="max-w-lg mb-8">{personal.bio}</p>
 
             {/* Contact buttons */}
-            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+            <div className="flex gap-3 flex-wrap">
               <a href={`mailto:${personal.email}`} className="btn-contact">
                 <span>✉</span> Email
               </a>
@@ -95,7 +55,6 @@ export default function Hero() {
               >
                 <span>↗</span> LinkedIn
               </a>
-
               <a
                 href={personal.github}
                 target="_blank"
@@ -108,32 +67,16 @@ export default function Hero() {
           </div>
 
           {/* Right — abstract morphing shape */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexShrink: 0,
-            }}
-          >
+          <div className="flex items-center justify-center shrink-0">
             <div
+              className="w-40 h-40 shadow-md"
               style={{
-                width: "160px",
-                height: "160px",
                 background:
                   "linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-accent))",
                 borderRadius: "30% 70% 60% 40% / 40% 45% 55% 60%",
                 animation: "morph 14s infinite alternate ease-in-out",
-                boxShadow: "var(--shadow-md)",
               }}
             />
-            <style>{`
-              @keyframes morph {
-                0%   { border-radius: 30% 70% 60% 40% / 40% 45% 55% 60%; }
-                50%  { border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%; }
-                100% { border-radius: 70% 30% 40% 60% / 60% 55% 45% 40%; }
-              }
-            `}</style>
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <div style={{ borderBottom: "1px solid var(--color-border)" }}>
+      <div className="border-b border-border">
         <SkillCloud />
       </div>
     </>

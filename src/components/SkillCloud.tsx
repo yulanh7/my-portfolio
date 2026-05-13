@@ -9,21 +9,14 @@ const delays = [
 
 export default function SkillCloud() {
   return (
-    <section style={{ padding: "4rem 0" }}>
+    <section className="py-16">
       <div className="container">
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "0.75rem",
-            marginBottom: "2rem",
-          }}
-        >
+        <div className="flex items-center gap-3 mb-8">
           <span className="star-decoration">✦</span>
           <h2>Skills</h2>
         </div>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
+        <div className="flex flex-wrap gap-3">
           {skills.map((skill, i) => (
             <span
               key={skill.label}
