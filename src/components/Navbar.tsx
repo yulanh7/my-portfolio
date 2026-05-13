@@ -22,7 +22,10 @@ export default function Navbar() {
         ([entry]) => {
           if (entry.isIntersecting) setActiveSection(id);
         },
-        { threshold: 0.3 }
+        {
+          threshold: 0,
+          rootMargin: "-64px 0px -50% 0px",
+        },
       );
       observer.observe(el);
       return observer;

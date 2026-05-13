@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ProjectCard from "@/components/ProjectCard";
+import Footer from "@/components/Footer";
 import { projects } from "@/data/content";
 
 const CARD_WIDTH = 460 + 40; // card width + gap
@@ -110,6 +111,8 @@ export default function Home() {
         </div>
       </section>
       {/* next: Experience → bg-bg-primary */}
+
+      <Footer />
     </>
   );
 }
