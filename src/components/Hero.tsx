@@ -21,10 +21,21 @@ export default function Hero() {
             </div>
 
             {/* Name */}
-            <h1 className="mb-3">{personal.name}</h1>
+            <h1 className="mb-2">{personal.name}</h1>
 
-            {/* Wave line */}
-            <div className="wave-line">
+            {/* Role */}
+            <h3 className="mb-5 text-text-primary font-bold border-l-accent text-text-secondary">
+              {personal.title}
+            </h3>
+            {/* <p className="text-sm text-text-secondary mb-6 tracking-wide">
+              {personal.subtitle}&nbsp;·&nbsp;<em>{personal.subtitleNote}</em>
+            </p> */}
+
+            {/* Bio */}
+            <p className=" mb-6">{personal.bio}</p>
+
+            {/* Wave line — between bio and skills */}
+            <div className="wave-line mb-6">
               <svg
                 className="wave-svg"
                 viewBox="0 0 1200 20"
@@ -34,42 +45,18 @@ export default function Hero() {
               </svg>
             </div>
 
-            {/* Role */}
-            <h2 className="mb-1.5 text-text-primary font-normal">
-              {personal.title}
-            </h2>
-            <p className="text-sm text-text-secondary mb-6 tracking-wide">
-              {personal.subtitle}&nbsp;·&nbsp;<em>{personal.subtitleNote}</em>
-            </p>
-
-            {/* Bio */}
-            <p className="max-w-[520px] mb-8">{personal.bio}</p>
-
             {/* Skills */}
             <div className="flex flex-wrap gap-3">
               {skills.map((skill, i) => (
                 <span
                   key={skill.label}
-                  className={`skill-tag ${skill.size}`}
+                  className={`skill-tag `}
                   style={{ animationDelay: `${delays[i] ?? 0}s` }}
                 >
                   {skill.label}
                 </span>
               ))}
             </div>
-          </div>
-
-          {/* Right — abstract morphing shape */}
-          <div className="flex items-center justify-center shrink-0">
-            <div
-              className="w-40 h-40 shadow-md"
-              style={{
-                background:
-                  "linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-accent))",
-                borderRadius: "30% 70% 60% 40% / 40% 45% 55% 60%",
-                animation: "morph 14s infinite alternate ease-in-out",
-              }}
-            />
           </div>
         </div>
       </div>
