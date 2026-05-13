@@ -7,7 +7,7 @@ export const personal = {
   subtitleNote: "with Front-End project experience",
   location: "Canberra, Australia",
   status: "Open to work",
-  bio: "Front-end developer with 5+ years building and maintaining WordPress and React/Next.js applications. Master of IT from UTS. Track record of owning projects end-to-end — from architecture to deployment — and translating technical decisions for non-technical teams.",
+  bio: "Front-end developer with 5+ years building and maintaining WordPress and React/Next.js applications. Track record of owning projects end-to-end — from architecture to deployment — and translating technical decisions for non-technical teams.",
   email: "yulanh.tech@gmail.com",
   linkedin: "https://linkedin.com/in/yulan-huang",
   github: "https://github.com/yulanh7",
@@ -17,7 +17,7 @@ export const personal = {
 
 export const education = {
   degree: "Master of Information Technology",
-  school: "University of Technology Sydney (UTS)",
+  school: "University of Technology Sydney",
   period: "2016 – 2018",
 };
 
@@ -102,5 +102,56 @@ export const projects = [
     tech: ["WordPress", "PHP", "CSS", "MySQL"],
     images: ["/images/4cOrg-desktop.png"],
     link: "https://canberra-ccc.org/",
+  },
+];
+
+// ── Experience ────────────────────────────────────────────
+
+export const experience = [
+  {
+    period: "Jan 2026 – Mar 2026",
+    title: "Website Coordinator (Contract)",
+    company: "Early Childhood Australia",
+    location: "Canberra, ACT",
+    bullets: [
+      "Migrated 390+ WooCommerce products and 300+ blog posts, maintaining data integrity and URL structure to preserve SEO rankings.",
+      "Applied custom CSS and layout adjustments to align the new site with brand standards.",
+      "Ran quality assurance across content, internal links, and structured data before go-live.",
+    ],
+  },
+  {
+    period: "Dec 2022 – May 2024",
+    title: "Web Developer",
+    company: "4Data IT Pty Ltd",
+    location: "Canberra, ACT",
+    bullets: [
+      "Built a training platform with Next.js, TypeScript, and Redux Toolkit for 140+ client organisations.",
+      "Developed REST APIs with Node.js/Express and MongoDB; implemented JWT authentication.",
+      "Built and maintained custom WordPress themes and plugins across 20+ sites.",
+      "Wrote Jest and React Testing Library test suite; achieved 80%+ coverage on critical paths.",
+      "Deployed applications on Ubuntu using Docker and PM2.",
+      "Worked directly with non-technical leadership to explain build decisions.",
+    ],
+  },
+  {
+    period: "Oct 2019 – Mar 2022",
+    title: "Front-End Developer",
+    company: "Link POS Ltd",
+    location: "Sydney, NSW",
+    bullets: [
+      "Built online ordering system with Next.js and Material UI for 100+ retail clients.",
+      "Developed React/Ant Design merchant dashboard for product, order, and promotion management.",
+      "Built React Native POS app for in-store ordering and payments.",
+      "Collaborated with backend team on REST API design and frontend integration.",
+    ],
+  },
+  {
+    period: "2018 – 2019",
+    title: "Web Developer",
+    company: "Various Clients",
+    location: "Sydney, NSW",
+    bullets: [
+      "Delivered React and WordPress websites for local businesses across retail and services.",
+    ],
   },
 ];

@@ -6,6 +6,7 @@ import Hero from "@/components/Hero";
 import ProjectCard from "@/components/ProjectCard";
 import Footer from "@/components/Footer";
 import { projects } from "@/data/content";
+import Experience from "@/components/Experience";
 
 const CARD_WIDTH = 460 + 40; // card width + gap
 
@@ -115,6 +116,7 @@ export default function Home() {
         </div>
       </section>
       {/* next: Experience → bg-bg-primary */}
+      <Experience />
 
       <Footer />
     </>

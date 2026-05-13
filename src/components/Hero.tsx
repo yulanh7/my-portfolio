@@ -1,6 +1,6 @@
 "use client";
 
-import { personal, skills } from "@/data/content";
+import { personal, skills, education } from "@/data/content";
 
 const delays = [
   0, 0.4, 0.8, 1.2, 1.6, 2.0, 2.4, 2.8, 0.2, 0.6, 1.0, 1.4, 1.8, 2.2, 2.6, 3.0,
@@ -33,7 +33,10 @@ export default function Hero() {
 
             {/* Bio */}
             <p className=" mb-6">{personal.bio}</p>
-
+            <p className="text-xs text-text-secondary tracking-wide mb-6">
+              <span style={{ color: "var(--color-accent-green)" }}>✦</span>
+              &nbsp;{education.degree} · {education.school}
+            </p>
             {/* Wave line — between bio and skills */}
             <div className="wave-line mb-6">
               <svg
