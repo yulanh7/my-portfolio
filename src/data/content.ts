@@ -3,6 +3,12 @@
 export const personal = {
   name: "Rachel (Yulan) Huang",
   title: "Front-End Developer",
+  titles: [
+    "Front-End Developer",
+    "React & Next.js Specialist",
+    "UI/UX Focused Engineer",
+    "WordPress Expert",
+  ],
   subtitle: "React & Next.js · TypeScript · 5+ Years",
   subtitleNote: "with Front-End project experience",
   location: "Canberra, Australia",

@@ -1,6 +1,7 @@
 "use client";
 
 import { personal, skills, education } from "@/data/content";
+import { useTypewriter } from "@/hooks/useTypewriter";
 
 const delays = [
   0, 0.4, 0.8, 1.2, 1.6, 2.0, 2.4, 2.8, 0.2, 0.6, 1.0, 1.4, 1.8, 2.2, 2.6, 3.0,
@@ -8,6 +9,8 @@ const delays = [
 ];
 
 export default function Hero() {
+  const typedTitle = useTypewriter(personal.titles);
+
   return (
     <section id="about" className="pt-32 pb-16">
       <div className="container">
@@ -25,7 +28,8 @@ export default function Hero() {
 
             {/* Role */}
             <h3 className="mb-5 text-text-primary font-bold border-l-accent text-text-secondary">
-              {personal.title}
+              {typedTitle}
+              <span className="animate-pulse ml-0.5" style={{ color: "var(--color-accent-brown)" }}>|</span>
             </h3>
             {/* <p className="text-sm text-text-secondary mb-6 tracking-wide">
               {personal.subtitle}&nbsp;·&nbsp;<em>{personal.subtitleNote}</em>
