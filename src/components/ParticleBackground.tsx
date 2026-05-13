@@ -39,7 +39,7 @@ export default function ParticleBackground() {
       canvas.height = height;
     }
 
-    function createParticles(count = 20) {
+    function createParticles(count = 40) {
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
