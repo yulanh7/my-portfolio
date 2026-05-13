@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import ParticleBackground from "@/components/ParticleBackground";
+import PageDecorations from "@/components/PageDecorations";
 
 export const metadata: Metadata = {
   title: "Rachel Huang · Front-End Developer · Canberra",
   description:
-    "Front-End developer with 5+ years building React and Next.js applications. Based in Canberra, Australia. Open to new opportunities.",
+    "Front-end developer with 5+ years building React and Next.js applications. Based in Canberra, Australia. Open to new opportunities.",
   keywords: [
     "React",
     "Next.js",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Rachel Huang" }],
   openGraph: {
     title: "Rachel Huang · Front-End Developer",
-    description: "Front-End developer based in Canberra, Australia.",
+    description: "Front-end developer based in Canberra, Australia.",
     type: "website",
   },
 };
@@ -37,10 +38,12 @@ export default function RootLayout({
         <div className="blob-bg" aria-hidden="true" />
         <div className="blob-bg-2" aria-hidden="true" />
 
-        {/* Particle canvas (client component) */}
+        <PageDecorations />
+
+        {/* Particle canvas */}
         <ParticleBackground />
 
-        {/* Custom cursor (client component) */}
+        {/* Custom cursor */}
         <CustomCursor />
 
         {/* Page content */}
