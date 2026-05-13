@@ -88,20 +88,20 @@ export default function ProjectCard({ project }: { project: Project }) {
 
         {/* Bottom strip — fades out on hover */}
         <div
-          className="px-4 py-3 flex items-center justify-between transition-opacity duration-300"
+          className="px-4 py-3 flex items-center gap-2 transition-opacity duration-300"
           style={{
             background: "var(--color-accent-green)",
             opacity: isHovered ? 0 : 1,
           }}
         >
-          <span className="text-sm font-medium text-white">
-            {project.title}
-          </span>
-          {project.badge && (
-            <span className="text-xs text-white/70 tracking-wide">
-              {project.badge}
+          {project.tech.slice(0, 3).map((t) => (
+            <span
+              key={t}
+              className="text-xs px-2 py-0.5 border border-white/40 rounded-full text-white/90"
+            >
+              {t}
             </span>
-          )}
+          ))}
         </div>
 
         {/* Hover overlay — covers entire card including bottom strip */}
