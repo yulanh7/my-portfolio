@@ -20,3 +20,28 @@ export const education = {
   school: "University of Technology Sydney (UTS)",
   period: "2016 – 2018",
 };
+
+// ── Skills ────────────────────────────────────────────────
+
+export const skills = [
+  { label: "React", size: "large" },
+  { label: "Next.js", size: "large" },
+  { label: "TypeScript", size: "large" },
+  { label: "JavaScript", size: "medium" },
+  { label: "HTML5 · CSS/SCSS", size: "medium" },
+  { label: "Redux Toolkit", size: "medium" },
+  { label: "Node.js", size: "medium" },
+  { label: "REST APIs", size: "small" },
+  { label: "WordPress", size: "medium" },
+  { label: "PHP", size: "small" },
+  { label: "WooCommerce", size: "small" },
+  { label: "MySQL", size: "small" },
+  { label: "MongoDB", size: "medium" },
+  { label: "Docker", size: "medium" },
+  { label: "Jest", size: "small" },
+  { label: "AWS", size: "medium" },
+  { label: "CI/CD", size: "small" },
+  { label: "Figma", size: "small" },
+  { label: "PM2 · Ubuntu", size: "small" },
+  { label: "Git", size: "small" },
+];
