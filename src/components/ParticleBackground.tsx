@@ -9,11 +9,16 @@ interface Particle {
   speedX: number;
   speedY: number;
   opacity: number;
+  color: string;
 }
 
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-
+  const COLORS = [
+    "201, 181, 165", // warm beige
+    "142, 165, 163", // sage green
+    "184, 124, 78", // warm brown
+  ];
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -34,7 +39,7 @@ export default function ParticleBackground() {
       canvas.height = height;
     }
 
-    function createParticles(count = 40) {
+    function createParticles(count = 20) {
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -42,6 +47,7 @@ export default function ParticleBackground() {
         speedX: (Math.random() - 0.5) * 0.2,
         speedY: (Math.random() - 0.5) * 0.18,
         opacity: Math.random() * 0.35 + 0.1,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
       }));
     }
 
@@ -60,7 +66,7 @@ export default function ParticleBackground() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(107, 92, 82, ${p.opacity})`;
+        ctx.fillStyle = `rgba(${p.color}, ${p.opacity})`;
         ctx.fill();
       }
 
@@ -69,7 +75,7 @@ export default function ParticleBackground() {
 
     function handleResize() {
       resize();
-      createParticles(70);
+      createParticles(20);
     }
 
     resize();
