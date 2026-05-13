@@ -6,25 +6,25 @@ import Hero from "@/components/Hero";
 import ProjectCard from "@/components/ProjectCard";
 import { projects } from "@/data/content";
 
-const CARD_WIDTH = 380 + 24; // card width + gap
+const CARD_WIDTH = 460 + 40; // card width + gap
 
 /* alternating section backgrounds: primary → secondary → primary → secondary */
 export default function Home() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
+  const isPausedRef = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
     let animId: number;
-    let pos = 0;
-    const speed = 0.5;
+    let pos = el.scrollLeft;
 
     const animate = () => {
-      if (!isPaused) {
-        pos += speed;
-        if (pos >= el.scrollWidth / 2) pos = 0;
+      if (!isPausedRef.current) {
+        pos += 0.5;
+        const maxScroll = el.scrollWidth / 2;
+        if (pos >= maxScroll) pos = 0;
         el.scrollLeft = pos;
       }
       const next = Math.round(el.scrollLeft / CARD_WIDTH) % projects.length;
@@ -33,7 +33,7 @@ export default function Home() {
     };
     animId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animId);
-  }, [isPaused]);
+  }, []);
 
   return (
     <>
@@ -51,10 +51,18 @@ export default function Home() {
         </div>
         <div
           ref={scrollRef}
-          className="flex gap-10 overflow-x-hidden px-10"
-          style={{ cursor: "default" }}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
+          className="flex gap-10 overflow-x-hidden px-10 items-center"
+          style={{
+            cursor: "default",
+            paddingTop: "40px",
+            paddingBottom: "40px",
+          }}
+          onMouseEnter={() => {
+            isPausedRef.current = true;
+          }}
+          onMouseLeave={() => {
+            isPausedRef.current = false;
+          }}
         >
           {/* Duplicate projects for seamless loop */}
           {[...projects, ...projects].map((project, i) => (
@@ -68,25 +76,36 @@ export default function Home() {
             <button
               key={i}
               onClick={() => {
-                if (scrollRef.current) {
-                  scrollRef.current.scrollLeft = i * CARD_WIDTH;
-                  setActiveIndex(i);
-                }
+                const el = scrollRef.current;
+                if (!el) return;
+                el.scrollLeft = i * CARD_WIDTH;
+                setActiveIndex(i);
+                isPausedRef.current = true;
               }}
-              className="transition-all duration-300 ease-out rounded-full"
+              className="relative flex items-center justify-center transition-all duration-300 ease-out"
               style={{
-                height: "4px",
-                width: i === activeIndex ? "28px" : "8px",
-                background:
-                  i === activeIndex
-                    ? "var(--color-accent-brown)"
-                    : "var(--color-border)",
+                width: i === activeIndex ? "36px" : "20px",
+                height: "20px",
+                padding: "8px 0",
+                background: "none",
                 border: "none",
                 cursor: "pointer",
-                padding: 0,
               }}
               aria-label={`Go to project ${i + 1}`}
-            />
+            >
+              <div
+                style={{
+                  height: "4px",
+                  width: "100%",
+                  borderRadius: "9999px",
+                  background:
+                    i === activeIndex
+                      ? "var(--color-accent-brown)"
+                      : "var(--color-border)",
+                  transition: "all 300ms ease-out",
+                }}
+              />
+            </button>
           ))}
         </div>
       </section>
