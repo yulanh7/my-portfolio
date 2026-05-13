@@ -43,7 +43,11 @@ export default function Home() {
       <Hero />
 
       {/* Projects → bg-bg-secondary */}
-      <section id="projects" className="bg-bg-secondary py-20 overflow-hidden">
+      <section
+        id="projects"
+        className="py-20 overflow-hidden"
+        style={{ background: "rgba(237, 224, 212, 0.2)" }}
+      >
         <div className="container">
           <div className="flex items-center gap-3 mb-10">
             <span className="star-decoration text-accent-green">✦</span>
