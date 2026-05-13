@@ -1,14 +1,19 @@
 "use client";
 
-import { personal } from "@/data/content";
+import { personal, skills } from "@/data/content";
+
+const delays = [
+  0, 0.4, 0.8, 1.2, 1.6, 2.0, 2.4, 2.8, 0.2, 0.6, 1.0, 1.4, 1.8, 2.2, 2.6, 3.0,
+  0.3, 0.9, 1.5, 2.1,
+];
 
 export default function Hero() {
   return (
-    <section className="pt-28 pb-16 border-b border-border">
+    <section id="about" className="pt-32 pb-16 border-b border-border">
       <div className="container">
         <div className="flex justify-between items-start flex-wrap gap-8">
           {/* Left — text */}
-          <div className="flex-1 min-w-72">
+          <div className="flex-1 min-w-[280px]">
             {/* Location badge */}
             <div className="inline-flex items-center gap-1.5 text-xs text-text-secondary tracking-widest uppercase mb-5">
               <span className="star-decoration">✦</span>
@@ -34,35 +39,23 @@ export default function Hero() {
               {personal.title}
             </h2>
             <p className="text-sm text-text-secondary mb-6 tracking-wide">
-              {personal.subtitle}
-              &nbsp;·&nbsp;
-              <em>{personal.subtitleNote}</em>
+              {personal.subtitle}&nbsp;·&nbsp;<em>{personal.subtitleNote}</em>
             </p>
 
             {/* Bio */}
-            <p className="max-w-lg mb-8">{personal.bio}</p>
+            <p className="max-w-[520px] mb-8">{personal.bio}</p>
 
-            {/* Contact buttons */}
-            <div className="flex gap-3 flex-wrap">
-              <a href={`mailto:${personal.email}`} className="btn-contact">
-                <span>✉</span> Email
-              </a>
-              <a
-                href={personal.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-contact"
-              >
-                <span>↗</span> LinkedIn
-              </a>
-              <a
-                href={personal.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-contact"
-              >
-                <span>↗</span> GitHub
-              </a>
+            {/* Skills */}
+            <div className="flex flex-wrap gap-3">
+              {skills.map((skill, i) => (
+                <span
+                  key={skill.label}
+                  className={`skill-tag ${skill.size}`}
+                  style={{ animationDelay: `${delays[i] ?? 0}s` }}
+                >
+                  {skill.label}
+                </span>
+              ))}
             </div>
           </div>
 
