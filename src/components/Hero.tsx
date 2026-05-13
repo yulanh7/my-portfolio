@@ -9,7 +9,7 @@ const delays = [
 
 export default function Hero() {
   return (
-    <section id="about" className="pt-32 pb-16 border-b border-border">
+    <section id="about" className="pt-32 pb-16">
       <div className="container">
         <div className="flex justify-between items-start flex-wrap gap-8">
           {/* Left — text */}
