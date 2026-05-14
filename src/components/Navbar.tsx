@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { personal } from "@/data/content";
 
 const navLinks = [
@@ -12,26 +12,32 @@ const navLinks = [
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("about");
+  const hasScrolledRef = useRef(false);
 
   useEffect(() => {
     const sections = ["about", "projects", "experience", "contact"];
-    const observers = sections.map((id) => {
-      const el = document.getElementById(id);
-      if (!el) return null;
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveSection(id);
-        },
-        {
-          threshold: 0,
-          rootMargin: "-64px 0px -50% 0px",
-        },
-      );
-      observer.observe(el);
-      return observer;
-    });
-    return () => observers.forEach((obs) => obs?.disconnect());
+    const NAV_HEIGHT = 64;
+    const TRIGGER = NAV_HEIGHT + window.innerHeight * 0.35;
+
+    const handleScroll = () => {
+      hasScrolledRef.current = true;
+      let current = sections[0];
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= TRIGGER) current = id;
+      }
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!hasScrolledRef.current) return;
+    window.dispatchEvent(new CustomEvent("sectionChange", { detail: activeSection }));
+  }, [activeSection]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg-primary backdrop-blur-sm">

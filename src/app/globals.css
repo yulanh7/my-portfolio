@@ -419,6 +419,43 @@
     padding-left: 0.75rem;
   }
 
+  /* ── Section Decoration Animation ── */
+  @keyframes decorationPop {
+    0%   { transform: scale(0)    rotate(-12deg); opacity: 0; }
+    30%  { transform: scale(1.28) rotate(5deg);  opacity: 1; }
+    50%  { transform: scale(0.86) rotate(-3deg); opacity: 1; }
+    68%  { transform: scale(1.10) rotate(2deg);  opacity: 1; }
+    82%  { transform: scale(0.96) rotate(-1deg); opacity: 1; }
+    92%  { transform: scale(1.03) rotate(0deg);  opacity: 1; }
+    100% { transform: scale(1)    rotate(0deg);  opacity: 1; }
+  }
+
+  .decoration-item {
+    opacity: 0;
+    transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+  }
+
+  .decoration-visible .decoration-item {
+    animation: decorationPop 0.85s ease both;
+  }
+
+  @keyframes decorationFade {
+    from { transform: scale(1) rotate(0deg);   opacity: 1; }
+    to   { transform: scale(0.4) rotate(10deg); opacity: 0; }
+  }
+
+  .decoration-toggle .decoration-item {
+    opacity: 0;
+  }
+
+  .decoration-toggle.decoration-visible .decoration-item {
+    animation: decorationPop 0.85s ease both;
+  }
+
+  .decoration-toggle.decoration-exit .decoration-item {
+    animation: decorationFade 0.4s ease forwards;
+  }
+
   /* ── Responsive ── */
   @media (max-width: 768px) {
     body {
