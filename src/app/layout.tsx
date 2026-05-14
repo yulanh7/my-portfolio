@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import ParticleBackground from "@/components/ParticleBackground";
-import PageDecorations from "@/components/PageDecorations";
 import MouseGlow from "@/components/MouseGlow";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -39,8 +38,6 @@ export default function RootLayout({
         {/* Animated blob backgrounds */}
         <div className="blob-bg" aria-hidden="true" />
         <div className="blob-bg-2" aria-hidden="true" />
-
-        <PageDecorations />
 
         {/* Particle canvas */}
         <ParticleBackground />
