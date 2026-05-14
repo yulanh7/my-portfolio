@@ -61,7 +61,7 @@ export const projects = [
     description:
       "AI-powered career alignment tool. Upload a resume and job description to get an instant match score, skill gap analysis, and a tailored cover letter. Built with Gemini API.",
     tech: ["Next.js 15", "TypeScript", "Gemini API", "Tailwind CSS", "Vercel"],
-    images: ["/images/jobFlowAI.png"],
+    images: [{ src: "/images/jobFlowAI.png", type: "desktop" as const }],
     link: "https://jobflow-ai-teal.vercel.app/",
   },
   {
@@ -70,7 +70,10 @@ export const projects = [
     description:
       "Internal platform for Canberra Chinese Christian Church — members can browse and subscribe to fellowship groups, watch sermon videos, and manage their profile. Built with Next.js and Tailwind CSS.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "REST API"],
-    images: ["/images/4cInfo-desktop.png", "/images/4cInfo-mobile.png"],
+    images: [
+      { src: "/images/4cInfo-desktop.png", type: "desktop" as const },
+      { src: "/images/4cInfo-mobile.png", type: "mobile" as const },
+    ],
     link: "https://canberra-ccc.info/",
   },
   {
@@ -79,7 +82,10 @@ export const projects = [
     description:
       "Online ordering platform for 100+ retail clients with real-time menu, cart, and checkout. Includes a React Native POS app for in-store ordering and payments.",
     tech: ["Next.js", "Material UI", "React Native", "REST API"],
-    images: ["/images/linkeats-desktop.png", "/images/linkeats-mobile.png"],
+    images: [
+      { src: "/images/linkeats-desktop.png", type: "desktop" as const },
+      { src: "/images/linkeats-mobile.png", type: "mobile" as const },
+    ],
     link: "https://order.linkaumall.com/storemenu/68b7344c-2df7-474c-8bc9-38655d67fc41",
   },
   {
@@ -88,7 +94,7 @@ export const projects = [
     description:
       "Merchant management dashboard for product, order, and promotion management. Built for 100+ retail clients across Australia.",
     tech: ["React", "Ant Design", "Node.js", "REST API"],
-    images: ["/images/linkpost.png"],
+    images: [{ src: "/images/linkpost.png", type: "desktop" as const }],
     link: null,
   },
   {
@@ -97,7 +103,7 @@ export const projects = [
     description:
       "Online interactive recycling training platform for the ACT Government Sustainable Business Program. Includes video modules, quizzes, and completion tracking for 140+ organisations.",
     tech: ["Next.js", "TypeScript", "Node.js", "MongoDB"],
-    images: ["/images/businesswastecbr.png"],
+    images: [{ src: "/images/businesswastecbr.png", type: "desktop" as const }],
     link: "https://businesswastecbr.com.au/",
   },
   {
@@ -106,7 +112,7 @@ export const projects = [
     description:
       "Bilingual church website (English/Chinese) with custom WordPress theme, sermon archive, fellowship groups, and event management for Canberra Chinese Christian Church.",
     tech: ["WordPress", "PHP", "CSS", "MySQL"],
-    images: ["/images/4cOrg-desktop.png"],
+    images: [{ src: "/images/4cOrg-desktop.png", type: "desktop" as const }],
     link: "https://canberra-ccc.org/",
   },
 ];

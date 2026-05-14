@@ -8,7 +8,7 @@ interface Project {
   badge?: string;
   description: string;
   tech: string[];
-  images: string[];
+  images: { src: string; type: "desktop" | "mobile" }[];
   link: string | null;
 }
 
@@ -78,15 +78,25 @@ export default function ProjectCard({ project }: { project: Project }) {
         </div>
 
         {/* Image area */}
-        <div className="relative" style={{ height: "260px", borderRadius: "0 0 0 0" }}>
-          {project.images.map((src, index) => (
+        <div
+          className="relative"
+          style={{
+            height: "260px",
+            borderRadius: "0 0 0 0",
+            background:
+              project.images[currentIndex].type === "mobile"
+                ? "var(--color-bg-secondary)"
+                : "transparent",
+          }}
+        >
+          {project.images.map((image, index) => (
             <Image
-              key={src}
-              src={src}
+              key={image.src}
+              src={image.src}
               alt={`${project.title} ${index + 1}`}
               fill
               sizes="460px"
-              className={`object-cover transition-opacity duration-700 ease-out ${
+              className={`${image.type === "mobile" ? "object-contain" : "object-cover object-top"} transition-opacity duration-700 ease-out ${
                 index === currentIndex ? "opacity-100" : "opacity-0"
               }`}
             />
