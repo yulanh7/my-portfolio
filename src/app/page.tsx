@@ -9,6 +9,7 @@ import { projects } from "@/data/content";
 import Experience from "@/components/Experience";
 import SectionDecoration from "@/components/SectionDecoration";
 import StarIcon from "@/components/StarIcon";
+import ContactForm from "@/components/ContactForm";
 
 const CARD_WIDTH = 460 + 40; // card width + gap
 
@@ -52,25 +53,67 @@ export default function Home() {
         style={{ background: "rgba(237, 224, 212, 0.2)" }}
       >
         <SectionDecoration position="top-right" sectionId="projects" toggle>
-          <div className="decoration-item absolute" style={{ top: "0px", right: "0px", animationDelay: "0.1s" }}>
-            <StarIcon size={40} color="var(--color-text-primary)" style={{ opacity: 0.6 }} />
+          <div
+            className="decoration-item absolute"
+            style={{ top: "0px", right: "0px", animationDelay: "0.1s" }}
+          >
+            <StarIcon
+              size={40}
+              color="var(--color-text-primary)"
+              style={{ opacity: 0.6 }}
+            />
           </div>
-          <div className="decoration-item absolute" style={{ top: "-10px", right: "52px", animationDelay: "0.25s" }}>
-            <StarIcon size={22} color="var(--color-text-primary)" style={{ opacity: 0.5 }} />
+          <div
+            className="decoration-item absolute"
+            style={{ top: "-10px", right: "52px", animationDelay: "0.25s" }}
+          >
+            <StarIcon
+              size={22}
+              color="var(--color-text-primary)"
+              style={{ opacity: 0.5 }}
+            />
           </div>
-          <div className="decoration-item absolute" style={{ top: "28px", right: "48px", animationDelay: "0.4s" }}>
-            <StarIcon size={14} color="var(--color-text-primary)" style={{ opacity: 0.4 }} />
+          <div
+            className="decoration-item absolute"
+            style={{ top: "28px", right: "48px", animationDelay: "0.4s" }}
+          >
+            <StarIcon
+              size={14}
+              color="var(--color-text-primary)"
+              style={{ opacity: 0.4 }}
+            />
           </div>
         </SectionDecoration>
         <SectionDecoration position="bottom-left" sectionId="projects" toggle>
-          <div className="decoration-item absolute" style={{ bottom: "0px", left: "0px", animationDelay: "0.1s" }}>
-            <StarIcon size={40} color="var(--color-accent-brown)" style={{ opacity: 0.6 }} />
+          <div
+            className="decoration-item absolute"
+            style={{ bottom: "0px", left: "0px", animationDelay: "0.1s" }}
+          >
+            <StarIcon
+              size={40}
+              color="var(--color-accent-brown)"
+              style={{ opacity: 0.6 }}
+            />
           </div>
-          <div className="decoration-item absolute" style={{ bottom: "-10px", left: "52px", animationDelay: "0.25s" }}>
-            <StarIcon size={22} color="var(--color-accent-brown)" style={{ opacity: 0.5 }} />
+          <div
+            className="decoration-item absolute"
+            style={{ bottom: "-10px", left: "52px", animationDelay: "0.25s" }}
+          >
+            <StarIcon
+              size={22}
+              color="var(--color-accent-brown)"
+              style={{ opacity: 0.5 }}
+            />
           </div>
-          <div className="decoration-item absolute" style={{ bottom: "28px", left: "48px", animationDelay: "0.4s" }}>
-            <StarIcon size={14} color="var(--color-accent-green)" style={{ opacity: 0.4 }} />
+          <div
+            className="decoration-item absolute"
+            style={{ bottom: "28px", left: "48px", animationDelay: "0.4s" }}
+          >
+            <StarIcon
+              size={14}
+              color="var(--color-accent-green)"
+              style={{ opacity: 0.4 }}
+            />
           </div>
         </SectionDecoration>
         <div className="container">
@@ -141,6 +184,21 @@ export default function Home() {
       </section>
       {/* next: Experience → bg-bg-primary */}
       <Experience />
+
+      {/* Contact */}
+      <section
+        id="contact"
+        className="py-20"
+        style={{ background: "rgba(237, 224, 212, 0.2)" }}
+      >
+        <div className="container">
+          <div className="flex items-center gap-3 mb-10">
+            <span className="star-decoration text-accent-green">✦</span>
+            <h2>Get in Touch</h2>
+          </div>
+          <ContactForm />
+        </div>
+      </section>
 
       <Footer />
     </>
