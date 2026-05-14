@@ -119,7 +119,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 
         {/* Hover overlay — covers entire card including bottom strip */}
         <div
-          className="flex flex-col justify-start pt-6 p-5 transition-opacity duration-500 ease-out"
+          className="flex flex-col justify-start px-5 py-6 transition-opacity duration-500 ease-out"
           style={{
             background: "rgba(59, 46, 42, 0.90)",
             opacity: isHovered ? 1 : 0,
@@ -135,9 +135,8 @@ export default function ProjectCard({ project }: { project: Project }) {
           )}
           <h3 className="text-white font-medium text-base mb-2 flex items-center gap-2">
             {project.title}
-            {project.link && <span className="opacity-70">↗</span>}
           </h3>
-          <p className="text-white/85 text-sm leading-relaxed mb-3 line-clamp-2">
+          <p className="text-white/85 text-sm leading-relaxed mb-3">
             {project.description}
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -150,6 +149,11 @@ export default function ProjectCard({ project }: { project: Project }) {
               </span>
             ))}
           </div>
+          {project.link && (
+            <div className="flex-1 flex items-end justify-center pt-4">
+              <span className="text-white/90 text-5xl">↗</span>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -59,7 +59,7 @@ export const projects = [
     title: "JobFlow AI",
     badge: "Personal Project",
     description:
-      "AI-powered career alignment tool. Upload a resume and job description to get an instant match score, skill gap analysis, and a tailored cover letter. Built with Gemini API.",
+      "AI-powered career alignment tool — upload a resume and job description to get a match score, skill gap analysis, and tailored cover letter.",
     tech: ["Next.js 15", "TypeScript", "Gemini API", "Tailwind CSS", "Vercel"],
     images: [{ src: "/images/jobFlowAI.png", type: "desktop" as const }],
     link: "https://jobflow-ai-teal.vercel.app/",
@@ -68,7 +68,7 @@ export const projects = [
     title: "4C Info Platform",
     badge: "4Data IT",
     description:
-      "Internal platform for Canberra Chinese Christian Church — members can browse and subscribe to fellowship groups, watch sermon videos, and manage their profile. Built with Next.js and Tailwind CSS.",
+      "Internal church platform for sermon videos, fellowship groups, and member management. Built with Next.js and Tailwind CSS.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "REST API"],
     images: [
       { src: "/images/4cInfo-desktop.png", type: "desktop" as const },
@@ -80,7 +80,7 @@ export const projects = [
     title: "Online Ordering System",
     badge: "Link POS",
     description:
-      "Online ordering platform for 100+ retail clients with real-time menu, cart, and checkout. Includes a React Native POS app for in-store ordering and payments.",
+      "Online ordering platform for 100+ retail clients with real-time menu and checkout. Includes a React Native POS app.",
     tech: ["Next.js", "Material UI", "React Native", "REST API"],
     images: [
       { src: "/images/linkeats-desktop.png", type: "desktop" as const },
@@ -92,7 +92,7 @@ export const projects = [
     title: "Link Business Portal",
     badge: "Link POS",
     description:
-      "Merchant management dashboard for product, order, and promotion management. Built for 100+ retail clients across Australia.",
+      "Merchant dashboard for product, order, and promotion management. Serving 100+ retail clients across Australia.",
     tech: ["React", "Ant Design", "Node.js", "REST API"],
     images: [{ src: "/images/linkpost.png", type: "desktop" as const }],
     link: null,
@@ -101,7 +101,7 @@ export const projects = [
     title: "Business Waste Training",
     badge: "4Data IT",
     description:
-      "Online interactive recycling training platform for the ACT Government Sustainable Business Program. Includes video modules, quizzes, and completion tracking for 140+ organisations.",
+      "Interactive recycling training for the ACT Government — video modules, quizzes, and completion tracking for 140+ organisations.",
     tech: ["Next.js", "TypeScript", "Node.js", "MongoDB"],
     images: [{ src: "/images/businesswastecbr.png", type: "desktop" as const }],
     link: "https://businesswastecbr.com.au/",
@@ -110,7 +110,7 @@ export const projects = [
     title: "4C Church Website",
     badge: "WordPress",
     description:
-      "Bilingual church website (English/Chinese) with custom WordPress theme, sermon archive, fellowship groups, and event management for Canberra Chinese Christian Church.",
+      "Bilingual church website (English/Chinese) with custom WordPress theme, sermon archive, and event management.",
     tech: ["WordPress", "PHP", "CSS", "MySQL"],
     images: [{ src: "/images/4cOrg-desktop.png", type: "desktop" as const }],
     link: "https://canberra-ccc.org/",
