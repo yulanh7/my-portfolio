@@ -81,7 +81,7 @@ export const projects = [
     badge: "Link POS",
     description:
       "Online ordering platform for 100+ retail clients with real-time menu and checkout. Includes a React Native POS app.",
-    tech: ["Next.js", "Material UI", "React Native", "REST API"],
+    tech: ["Next.js", "Material UI", "REST API"],
     images: [
       { src: "/images/linkeats-desktop.png", type: "desktop" as const },
       { src: "/images/linkeats-mobile.png", type: "mobile" as const },
@@ -89,12 +89,21 @@ export const projects = [
     link: "https://order.linkaumall.com/storemenu/68b7344c-2df7-474c-8bc9-38655d67fc41",
   },
   {
+    title: "Link POS App",
+    badge: "Link POS",
+    description:
+      "React Native POS app for in-store ordering and payments, connected to Android POS hardware. Used by 100+ retail clients across Australia.",
+    tech: ["React Native", "REST API", "Android"],
+    images: [{ src: "/images/linkpos-app.png", type: "desktop" as const }],
+    link: null,
+  },
+  {
     title: "Link Business Portal",
     badge: "Link POS",
     description:
       "Merchant dashboard for product, order, and promotion management. Serving 100+ retail clients across Australia.",
     tech: ["React", "Ant Design", "Node.js", "REST API"],
-    images: [{ src: "/images/linkpost.png", type: "desktop" as const }],
+    images: [{ src: "/images/linkpos-portal.png", type: "desktop" as const }],
     link: null,
   },
   {
