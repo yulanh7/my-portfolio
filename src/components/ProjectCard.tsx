@@ -56,8 +56,29 @@ export default function ProjectCard({ project }: { project: Project }) {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
+        {/* Top strip — fades out on hover */}
+        <div
+          className="px-4 py-3 flex items-center gap-2 transition-opacity duration-300"
+          style={{
+            background:
+              "linear-gradient(to right, var(--color-accent-green), rgba(142, 165, 163, 0.7))",
+            borderRadius: "12px 12px 0 0",
+            opacity: isHovered ? 0 : 1,
+          }}
+        >
+          {project.tech.slice(0, 3).map((t) => (
+            <span
+              key={t}
+              className="text-xs px-2 py-0.5 border border-white/40 rounded-full text-white/90"
+              style={{ fontWeight: 600 }}
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+
         {/* Image area */}
-        <div className="relative" style={{ height: "260px" }}>
+        <div className="relative" style={{ height: "260px", borderRadius: "0 0 0 0" }}>
           {project.images.map((src, index) => (
             <Image
               key={src}
@@ -84,24 +105,6 @@ export default function ProjectCard({ project }: { project: Project }) {
               ))}
             </div>
           )}
-        </div>
-
-        {/* Bottom strip — fades out on hover */}
-        <div
-          className="px-4 py-3 flex items-center gap-2 transition-opacity duration-300"
-          style={{
-            background: "var(--color-accent-green)",
-            opacity: isHovered ? 0 : 1,
-          }}
-        >
-          {project.tech.slice(0, 3).map((t) => (
-            <span
-              key={t}
-              className="text-xs px-2 py-0.5 border border-white/40 rounded-full text-white/90"
-            >
-              {t}
-            </span>
-          ))}
         </div>
 
         {/* Hover overlay — covers entire card including bottom strip */}
