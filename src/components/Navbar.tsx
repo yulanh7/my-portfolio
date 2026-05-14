@@ -96,6 +96,28 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          <span style={{ color: "var(--color-border)", fontSize: "1rem" }}>
+            |
+          </span>
+          <a
+            href="/Rachel_Huang_Resume.docx"
+            download="Rachel_Huang_Resume.docx"
+            className="text-xs font-medium tracking-widest uppercase transition-all duration-300 hover:-translate-y-0.5 text-text-secondary hover:text-text-primary flex items-center gap-1"
+          >
+            <svg
+              width="11"
+              height="11"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            CV
+          </a>
         </nav>
       </div>
     </header>
