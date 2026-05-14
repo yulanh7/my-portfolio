@@ -108,7 +108,12 @@ export default function Navbar() {
           <a
             href="/Rachel_Huang_Resume.docx"
             download="Rachel_Huang_Resume.docx"
-            className="text-xs font-medium tracking-widest uppercase transition-all duration-300 hover:-translate-y-0.5 text-text-secondary hover:text-text-primary flex items-center gap-1"
+            className="text-xs font-medium tracking-widest uppercase transition-all duration-300 hover:-translate-y-0.5 flex items-center gap-1 px-3 py-1.5 rounded-full"
+            style={{
+              color: "var(--color-accent-brown)",
+              border: "1px solid var(--color-border)",
+              background: "var(--color-surface)",
+            }}
           >
             <svg
               width="11"
