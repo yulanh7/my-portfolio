@@ -19,7 +19,7 @@ export default function Hero() {
           <div className="flex-1 min-w-[280px]">
             {/* Location badge */}
             <div className="inline-flex items-center gap-1.5 text-xs text-text-secondary tracking-widest uppercase mb-5">
-              <span className="star-decoration text-accent-green">✦</span>
+              <span className="star-decoration text-accent-brown">✦</span>
               {personal.location} · {personal.status}
             </div>
 
@@ -29,7 +29,12 @@ export default function Hero() {
             {/* Role */}
             <h3 className="mb-5 text-text-primary font-bold border-l-accent text-text-secondary">
               {typedTitle}
-              <span className="animate-pulse ml-0.5" style={{ color: "var(--color-accent-brown)" }}>|</span>
+              <span
+                className="animate-pulse ml-0.5"
+                style={{ color: "var(--color-accent-brown)" }}
+              >
+                |
+              </span>
             </h3>
             {/* <p className="text-sm text-text-secondary mb-6 tracking-wide">
               {personal.subtitle}&nbsp;·&nbsp;<em>{personal.subtitleNote}</em>
