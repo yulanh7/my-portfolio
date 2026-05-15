@@ -10,6 +10,7 @@ import Experience from "@/components/Experience";
 import SectionDecoration from "@/components/SectionDecoration";
 import StarIcon from "@/components/StarIcon";
 import ContactForm from "@/components/ContactForm";
+import SectionHeader from "@/components/SectionHeader";
 
 const CARD_WIDTH = 460 + 40; // card width + gap
 
@@ -117,10 +118,11 @@ export default function Home() {
           </div>
         </SectionDecoration>
         <div className="container">
-          <div className="flex items-center gap-3 mb-10">
-            <span className="star-decoration text-accent-green">✦</span>
-            <h2>Selected Projects</h2>
-          </div>
+          <SectionHeader
+            label="Selected Projects"
+            title="What I've Built"
+            labelColor="var(--color-accent-brown)"
+          />
         </div>
         <div
           ref={scrollRef}
@@ -192,10 +194,11 @@ export default function Home() {
         style={{ background: "rgba(237, 224, 212, 0.2)" }}
       >
         <div className="container">
-          <div className="flex items-center gap-3 mb-10">
-            <span className="star-decoration text-accent-green">✦</span>
-            <h2>Get in Touch</h2>
-          </div>
+          <SectionHeader
+            label="Contact  "
+            title="Actively Seeking Opportunities"
+            labelColor="var(--color-accent-brown)"
+          />
           <ContactForm />
         </div>
       </section>

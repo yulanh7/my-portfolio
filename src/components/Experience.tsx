@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { experience } from "@/data/content";
+import SectionHeader from "@/components/SectionHeader";
 
 export default function Experience() {
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -43,11 +44,7 @@ export default function Experience() {
         style={{ background: "rgba(253, 250, 247, 0.2)" }}
       >
         <div className="container">
-          {/* Section header */}
-          <div className="flex items-center gap-3 mb-12">
-            <span className="star-decoration text-accent-brown">✦</span>
-            <h2>Experience</h2>
-          </div>
+          <SectionHeader label="Experience" title="Where I've Worked" labelColor="var(--color-accent-brown)" />
 
           {/* Desktop timeline */}
           <div className="hidden md:block relative">

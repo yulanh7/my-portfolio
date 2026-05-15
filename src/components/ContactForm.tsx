@@ -139,27 +139,6 @@ export default function ContactForm() {
     <div className="flex flex-col md:flex-row gap-0 w-full">
       {/* Left column — contact info */}
       <div className="w-full md:w-[40%] py-8 md:py-12 md:pr-12">
-        <h2
-          className="italic mb-4"
-          style={{
-            fontFamily: "var(--font-heading)",
-            fontSize: "var(--text-h2)",
-            lineHeight: "var(--leading-h2)",
-            color: "var(--color-text-primary)",
-          }}
-        >
-          Let&apos;s work together
-        </h2>
-        <p
-          className="mb-10"
-          style={{
-            color: "var(--color-text-secondary)",
-            fontSize: "var(--text-small)",
-          }}
-        >
-          Actively seeking front-end opportunities in Canberra
-        </p>
-
         <ul className="flex flex-col gap-5">
           {contactItems.map((item) => (
             <li key={item.href}>
