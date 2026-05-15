@@ -15,6 +15,7 @@ export const personal = {
   status: "Open to work",
   bio: "Front-end developer with 5+ years building and maintaining WordPress and React/Next.js applications. Track record of owning projects end-to-end — from architecture to deployment — and translating technical decisions for non-technical teams.",
   email: "yulanh.tech@gmail.com",
+  phone: "0468 869 556",
   linkedin: "https://linkedin.com/in/yulan-huang",
   github: "https://github.com/yulanh7",
 };
