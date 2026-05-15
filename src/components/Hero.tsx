@@ -18,7 +18,10 @@ export default function Hero() {
           {/* Left — text */}
           <div className="flex-1 min-w-[280px]">
             {/* Location badge */}
-            <div className="inline-flex items-center gap-1.5 text-xs tracking-widest uppercase mb-5" style={{ color: "var(--color-accent-green)" }}>
+            <div
+              className="inline-flex items-center gap-1.5 text-xs tracking-widest uppercase mb-5"
+              style={{ color: "var(--color-accent-brown)" }}
+            >
               <span>✦</span>
               {personal.location} · {personal.status}
             </div>
