@@ -114,9 +114,28 @@ export default function ContactForm() {
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
+  const [errors, setErrors] = useState<{
+    name?: string;
+    email?: string;
+    message?: string;
+  }>({});
 
   const handleSubmit = async (e: React.MouseEvent) => {
     e.preventDefault();
+
+    const newErrors: { name?: string; email?: string; message?: string } = {};
+    if (!form.name.trim()) newErrors.name = "Name is required";
+    if (!form.email.trim()) newErrors.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
+      newErrors.email = "Please enter a valid email";
+    if (!form.message.trim()) newErrors.message = "Message is required";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    setErrors({});
+
     setStatus("loading");
     try {
       const res = await fetch("/api/contact", {
@@ -182,72 +201,112 @@ export default function ContactForm() {
         <div className="flex flex-col gap-8">
           {/* Name + Email row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <input
-              type="text"
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              placeholder="Name"
-              className="w-full py-2 text-sm outline-none bg-transparent transition-colors duration-200"
-              style={{
-                borderBottom: "1px solid var(--color-border)",
-                borderTop: "none",
-                borderLeft: "none",
-                borderRight: "none",
-                borderRadius: 0,
-                color: "var(--color-text-primary)",
-              }}
-              onFocus={(e) =>
-                (e.target.style.borderBottomColor = "var(--color-accent-brown)")
-              }
-              onBlur={(e) =>
-                (e.target.style.borderBottomColor = "var(--color-border)")
-              }
-            />
-            <input
-              type="email"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              placeholder="Email"
-              className="w-full py-2 text-sm outline-none bg-transparent transition-colors duration-200"
-              style={{
-                borderBottom: "1px solid var(--color-border)",
-                borderTop: "none",
-                borderLeft: "none",
-                borderRight: "none",
-                borderRadius: 0,
-                color: "var(--color-text-primary)",
-              }}
-              onFocus={(e) =>
-                (e.target.style.borderBottomColor = "var(--color-accent-brown)")
-              }
-              onBlur={(e) =>
-                (e.target.style.borderBottomColor = "var(--color-border)")
-              }
-            />
+            <div>
+              <input
+                type="text"
+                value={form.name}
+                onChange={(e) => {
+                  setForm({ ...form, name: e.target.value });
+                  if (errors.name) setErrors({ ...errors, name: undefined });
+                }}
+                placeholder="Name"
+                className="w-full py-2 text-sm outline-none bg-transparent transition-colors duration-200"
+                style={{
+                  borderBottom: `1px solid ${errors.name ? "#e05c5c" : "var(--color-border)"}`,
+                  borderTop: "none",
+                  borderLeft: "none",
+                  borderRight: "none",
+                  borderRadius: 0,
+                  color: "var(--color-text-primary)",
+                }}
+                onFocus={(e) =>
+                  (e.target.style.borderBottomColor =
+                    errors.name ? "#e05c5c" : "var(--color-accent-brown)")
+                }
+                onBlur={(e) =>
+                  (e.target.style.borderBottomColor = errors.name
+                    ? "#e05c5c"
+                    : "var(--color-border)")
+                }
+              />
+              {errors.name && (
+                <p className="text-xs mt-1" style={{ color: "#e05c5c" }}>
+                  {errors.name}
+                </p>
+              )}
+            </div>
+            <div>
+              <input
+                type="email"
+                value={form.email}
+                onChange={(e) => {
+                  setForm({ ...form, email: e.target.value });
+                  if (errors.email) setErrors({ ...errors, email: undefined });
+                }}
+                placeholder="Email"
+                className="w-full py-2 text-sm outline-none bg-transparent transition-colors duration-200"
+                style={{
+                  borderBottom: `1px solid ${errors.email ? "#e05c5c" : "var(--color-border)"}`,
+                  borderTop: "none",
+                  borderLeft: "none",
+                  borderRight: "none",
+                  borderRadius: 0,
+                  color: "var(--color-text-primary)",
+                }}
+                onFocus={(e) =>
+                  (e.target.style.borderBottomColor =
+                    errors.email ? "#e05c5c" : "var(--color-accent-brown)")
+                }
+                onBlur={(e) =>
+                  (e.target.style.borderBottomColor = errors.email
+                    ? "#e05c5c"
+                    : "var(--color-border)")
+                }
+              />
+              {errors.email && (
+                <p className="text-xs mt-1" style={{ color: "#e05c5c" }}>
+                  {errors.email}
+                </p>
+              )}
+            </div>
           </div>
 
           {/* Message */}
-          <textarea
-            value={form.message}
-            onChange={(e) => setForm({ ...form, message: e.target.value })}
-            placeholder="your message"
-            rows={4}
-            className="w-full py-2 text-sm outline-none bg-transparent resize-none transition-colors duration-200"
-            style={{
-              borderBottom: "1px solid var(--color-border)",
-              borderTop: "none",
-              borderLeft: "none",
-              borderRight: "none",
-              borderRadius: 0,
-              color: "var(--color-text-primary)",
-            }}
-            onFocus={(e) =>
-              (e.target.style.borderBottomColor = "var(--color-accent-brown)")
-            }
-            onBlur={(e) =>
-              (e.target.style.borderBottomColor = "var(--color-border)")
-            }
-          />
+          <div>
+            <textarea
+              value={form.message}
+              onChange={(e) => {
+                setForm({ ...form, message: e.target.value });
+                if (errors.message)
+                  setErrors({ ...errors, message: undefined });
+              }}
+              placeholder="your message"
+              rows={4}
+              className="w-full py-2 text-sm outline-none bg-transparent resize-none transition-colors duration-200"
+              style={{
+                borderBottom: `1px solid ${errors.message ? "#e05c5c" : "var(--color-border)"}`,
+                borderTop: "none",
+                borderLeft: "none",
+                borderRight: "none",
+                borderRadius: 0,
+                color: "var(--color-text-primary)",
+              }}
+              onFocus={(e) =>
+                (e.target.style.borderBottomColor =
+                  errors.message ? "#e05c5c" : "var(--color-accent-brown)")
+              }
+              onBlur={(e) =>
+                (e.target.style.borderBottomColor = errors.message
+                  ? "#e05c5c"
+                  : "var(--color-border)")
+              }
+            />
+            {errors.message && (
+              <p className="text-xs mt-1" style={{ color: "#e05c5c" }}>
+                {errors.message}
+              </p>
+            )}
+          </div>
 
           {/* Send button */}
           <div className="flex flex-col gap-3">

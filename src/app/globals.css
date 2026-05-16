@@ -456,6 +456,26 @@
     animation: decorationFade 0.4s ease forwards;
   }
 
+  /* ── Arc Decoration Animation (Experience) ── */
+  .arc-decoration circle {
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0s;
+  }
+  .arc-decoration.is-visible circle:nth-child(1) { stroke-dashoffset: 0; }
+  .arc-decoration.is-visible circle:nth-child(2) { stroke-dashoffset: 0; transition-delay: 0.2s; }
+  .arc-decoration.is-visible circle:nth-child(3) { stroke-dashoffset: 0; transition-delay: 0.38s; }
+
+  .arc-star {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: scale(0);
+    transition: opacity 0.45s ease-out, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .arc-decoration.is-visible .arc-star-1 { opacity: 1; transform: scale(1); transition-delay: 0.95s; }
+  .arc-decoration.is-visible .arc-star-2 { opacity: 1; transform: scale(1); transition-delay: 1.15s; }
+
   /* ── Responsive ── */
   @media (max-width: 768px) {
     body {

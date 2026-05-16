@@ -2,17 +2,26 @@
 
 import { useEffect, useRef, useState } from "react";
 import ProjectCard from "@/components/ProjectCard";
-import SectionDecoration from "@/components/SectionDecoration";
-import StarIcon from "@/components/StarIcon";
 import SectionHeader from "@/components/SectionHeader";
 import { projects } from "@/data/content";
 
 const CARD_WIDTH = 460 + 40;
+const STAR_PATH =
+  "M0 -20 C0 -20 -1 -7 -4 -4 C-7 -1 -20 0 -20 0 C-20 0 -7 1 -4 4 C-1 7 0 20 0 20 C0 20 1 7 4 4 C7 1 20 0 20 0 C20 0 7 -1 4 -4 C1 -7 0 -20 0 -20 Z";
 
 export default function Projects() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const isPausedRef = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [arcVisible, setArcVisible] = useState(false);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      setArcVisible((e as CustomEvent).detail === "projects");
+    };
+    window.addEventListener("sectionChange", handler);
+    return () => window.removeEventListener("sectionChange", handler);
+  }, []);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -41,70 +50,37 @@ export default function Projects() {
       className="py-20 overflow-hidden relative"
       style={{ background: "rgba(237, 224, 212, 0.2)" }}
     >
-      <SectionDecoration position="top-right" sectionId="projects" toggle>
-        <div
-          className="decoration-item absolute"
-          style={{ top: "0px", right: "0px", animationDelay: "0.1s" }}
-        >
-          <StarIcon
-            size={40}
-            color="var(--color-text-primary)"
-            style={{ opacity: 0.6 }}
-          />
-        </div>
-        <div
-          className="decoration-item absolute"
-          style={{ top: "-10px", right: "52px", animationDelay: "0.25s" }}
-        >
-          <StarIcon
-            size={22}
-            color="var(--color-text-primary)"
-            style={{ opacity: 0.5 }}
-          />
-        </div>
-        <div
-          className="decoration-item absolute"
-          style={{ top: "28px", right: "48px", animationDelay: "0.4s" }}
-        >
-          <StarIcon
-            size={14}
-            color="var(--color-text-primary)"
-            style={{ opacity: 0.4 }}
-          />
-        </div>
-      </SectionDecoration>
-      <SectionDecoration position="bottom-left" sectionId="projects" toggle>
-        <div
-          className="decoration-item absolute"
-          style={{ bottom: "0px", left: "0px", animationDelay: "0.1s" }}
-        >
-          <StarIcon
-            size={40}
-            color="var(--color-accent-brown)"
-            style={{ opacity: 0.6 }}
-          />
-        </div>
-        <div
-          className="decoration-item absolute"
-          style={{ bottom: "-10px", left: "52px", animationDelay: "0.25s" }}
-        >
-          <StarIcon
-            size={22}
-            color="var(--color-accent-brown)"
-            style={{ opacity: 0.5 }}
-          />
-        </div>
-        <div
-          className="decoration-item absolute"
-          style={{ bottom: "28px", left: "48px", animationDelay: "0.4s" }}
-        >
-          <StarIcon
-            size={14}
-            color="var(--color-accent-green)"
-            style={{ opacity: 0.4 }}
-          />
-        </div>
-      </SectionDecoration>
+      {/* Top-right: two concentric arcs (from Contact) */}
+      <div className="hidden md:block absolute top-0 right-0 pointer-events-none z-10">
+        <svg width="260" height="220" viewBox="0 0 260 220" fill="none"
+          className={`arc-decoration${arcVisible ? " is-visible" : ""}`}>
+          <circle cx="260" cy="0" r="185" stroke="var(--color-accent-brown)" strokeWidth="1.8" opacity="0.55" />
+          <circle cx="260" cy="0" r="115" stroke="var(--color-accent-brown)" strokeWidth="1.8" opacity="0.42" />
+          <g transform="translate(141, 142) scale(0.65)">
+            <g className="arc-star arc-star-1">
+              <path d={STAR_PATH} fill="var(--color-accent-brown)" opacity="1" />
+            </g>
+          </g>
+          <g transform="translate(163, 61) scale(0.42)">
+            <g className="arc-star arc-star-2">
+              <path d={STAR_PATH} fill="var(--color-text-primary)" opacity="0.85" />
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      {/* Bottom-left: single arc (from Contact) */}
+      <div className="hidden md:block absolute bottom-0 left-0 pointer-events-none z-10">
+        <svg width="220" height="190" viewBox="0 0 220 190" fill="none"
+          className={`arc-decoration${arcVisible ? " is-visible" : ""}`}>
+          <circle cx="0" cy="190" r="170" stroke="var(--color-accent-brown)" strokeWidth="1.8" opacity="0.4" />
+          <g transform="translate(120, 70) scale(0.55)">
+            <g className="arc-star arc-star-1">
+              <path d={STAR_PATH} fill="var(--color-accent-brown)" opacity="1" />
+            </g>
+          </g>
+        </svg>
+      </div>
       <div className="container">
         <SectionHeader
           label="Selected Projects"

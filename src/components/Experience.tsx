@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { experience } from "@/data/content";
 import SectionHeader from "@/components/SectionHeader";
+import SectionDecoration from "@/components/SectionDecoration";
+import StarIcon from "@/components/StarIcon";
 
 export default function Experience() {
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -40,9 +42,35 @@ export default function Experience() {
       )}
       <section
         id="experience"
-        className="py-20 overflow-x-hidden"
+        className="py-20 overflow-hidden relative"
         style={{ background: "rgba(253, 250, 247, 0.2)" }}
       >
+        {/* Top-right stars (from Projects) */}
+        <SectionDecoration position="top-right" sectionId="experience" toggle>
+          <div className="decoration-item absolute" style={{ top: "0px", right: "0px", animationDelay: "0.1s" }}>
+            <StarIcon size={40} color="var(--color-text-primary)" style={{ opacity: 0.6 }} />
+          </div>
+          <div className="decoration-item absolute" style={{ top: "-10px", right: "52px", animationDelay: "0.25s" }}>
+            <StarIcon size={22} color="var(--color-text-primary)" style={{ opacity: 0.5 }} />
+          </div>
+          <div className="decoration-item absolute" style={{ top: "28px", right: "48px", animationDelay: "0.4s" }}>
+            <StarIcon size={14} color="var(--color-text-primary)" style={{ opacity: 0.4 }} />
+          </div>
+        </SectionDecoration>
+
+        {/* Bottom-left stars (from Projects) */}
+        <SectionDecoration position="bottom-left" sectionId="experience" toggle>
+          <div className="decoration-item absolute" style={{ bottom: "0px", left: "0px", animationDelay: "0.1s" }}>
+            <StarIcon size={40} color="var(--color-accent-brown)" style={{ opacity: 0.6 }} />
+          </div>
+          <div className="decoration-item absolute" style={{ bottom: "-10px", left: "52px", animationDelay: "0.25s" }}>
+            <StarIcon size={22} color="var(--color-accent-brown)" style={{ opacity: 0.5 }} />
+          </div>
+          <div className="decoration-item absolute" style={{ bottom: "28px", left: "48px", animationDelay: "0.4s" }}>
+            <StarIcon size={14} color="var(--color-accent-green)" style={{ opacity: 0.4 }} />
+          </div>
+        </SectionDecoration>
+
         <div className="container">
           <SectionHeader label="Experience" title="Where I've Worked" labelColor="var(--color-accent-brown)" />
 
