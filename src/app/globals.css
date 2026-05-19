@@ -497,6 +497,15 @@
   .arc-decoration.is-visible .arc-star-1 { opacity: 1; transform: scale(1); transition-delay: 0.95s; }
   .arc-decoration.is-visible .arc-star-2 { opacity: 1; transform: scale(1); transition-delay: 1.15s; }
 
+  /* ── Mobile carousel ── */
+  .mobile-carousel {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .mobile-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
   /* ── Responsive ── */
   @media (max-width: 768px) {
     body {

@@ -12,11 +12,24 @@ interface Project {
   link: string | null;
 }
 
-export default function ProjectCard({ project }: { project: Project }) {
+export default function ProjectCard({
+  project,
+  mobile = false,
+  onDetailToggle,
+}: {
+  project: Project;
+  mobile?: boolean;
+  onDetailToggle?: (open: boolean) => void;
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const hasMultiple = project.images.length > 1;
+
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(hover: none) and (pointer: coarse)").matches);
+  }, []);
 
   useEffect(() => {
     if (!hasMultiple || isHovered) return;
@@ -28,35 +41,31 @@ export default function ProjectCard({ project }: { project: Project }) {
     };
   }, [isHovered, hasMultiple, project.images.length]);
 
-  const content = (
-    /* Outer wrapper handles scale — padding prevents shadow clipping */
+  const card = (
     <div
       className="flex-shrink-0 transition-all duration-500 ease-out"
       style={{
-        width: "460px",
-        padding: isHovered ? "34px" : "16px",
-        marginTop: isHovered ? "-8px" : "0",
+        width: mobile ? "100%" : "460px",
+        padding: (!mobile && isHovered) ? "34px" : "8px",
+        marginTop: (!mobile && isHovered) ? "-8px" : "0",
       }}
     >
-      {/* Inner card — handles border-radius and overflow */}
       <div
         className="relative transition-all duration-500 ease-out"
         style={{
           borderRadius: "12px",
           clipPath: "inset(0 round 12px)",
-
-          transform: isHovered ? "scale(1.15)" : "scale(1)",
-
+          transform: (!mobile && isHovered) ? "scale(1.15)" : "scale(1)",
           boxShadow: isHovered
             ? "0 28px 56px rgba(59,46,42,0.25)"
             : "0 2px 8px rgba(59,46,42,0.06)",
           zIndex: isHovered ? 10 : 1,
           position: "relative",
         }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => !isTouch && setIsHovered(true)}
+        onMouseLeave={() => !isTouch && setIsHovered(false)}
       >
-        {/* Top strip — fades out on hover */}
+        {/* Top strip */}
         <div
           className="px-4 py-3 flex items-center gap-2 transition-opacity duration-300"
           style={{
@@ -82,7 +91,6 @@ export default function ProjectCard({ project }: { project: Project }) {
           className="relative"
           style={{
             height: "260px",
-            borderRadius: "0 0 0 0",
             background:
               project.images[currentIndex].type === "mobile"
                 ? "var(--color-bg-secondary)"
@@ -102,7 +110,6 @@ export default function ProjectCard({ project }: { project: Project }) {
             />
           ))}
 
-          {/* Image dots top-right — hidden on hover */}
           {hasMultiple && !isHovered && (
             <div className="absolute top-3 right-3 flex gap-1 z-10">
               {project.images.map((_, i) => (
@@ -115,27 +122,48 @@ export default function ProjectCard({ project }: { project: Project }) {
               ))}
             </div>
           )}
+
+          {/* 详情 button — touch only, hidden once overlay is open */}
+          {isTouch && !isHovered && (
+            <button
+              onClick={() => { setIsHovered(true); onDetailToggle?.(true); }}
+              className="absolute bottom-3 right-3 z-10 px-4 py-1.5 rounded-full text-sm text-white/90 font-medium"
+              style={{ background: "rgba(59,46,42,0.55)", backdropFilter: "blur(4px)" }}
+            >
+              详情
+            </button>
+          )}
         </div>
 
-        {/* Hover overlay — covers entire card including bottom strip */}
+        {/* Overlay */}
         <div
-          className="flex flex-col justify-start px-5 py-6 transition-opacity duration-500 ease-out"
+          className="flex flex-col justify-start px-5 py-5 transition-opacity duration-500 ease-out"
           style={{
             background: "rgba(59, 46, 42, 0.90)",
             opacity: isHovered ? 1 : 0,
+            pointerEvents: isHovered ? "auto" : "none",
             borderRadius: "12px",
             position: "absolute",
             inset: 0,
           }}
         >
+          {/* Close button — touch only */}
+          {isTouch && (
+            <button
+              onClick={() => { setIsHovered(false); onDetailToggle?.(false); }}
+              className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-full text-white/70 text-base"
+              style={{ background: "rgba(255,255,255,0.12)" }}
+            >
+              ×
+            </button>
+          )}
+
           {project.badge && (
             <span className="text-xs tracking-widest uppercase text-white/60 mb-1.5">
               {project.badge}
             </span>
           )}
-          <h3 className="text-white font-medium text-base mb-2 flex items-center gap-2">
-            {project.title}
-          </h3>
+          <h3 className="text-white font-medium text-base mb-2">{project.title}</h3>
           <p className="text-white/85 text-sm leading-relaxed mb-3">
             {project.description}
           </p>
@@ -149,9 +177,18 @@ export default function ProjectCard({ project }: { project: Project }) {
               </span>
             ))}
           </div>
+
+          {/* Link — rendered as <a> inside overlay so touch can tap it */}
           {project.link && (
             <div className="flex-1 flex items-end justify-center pt-4">
-              <span className="text-white/90 text-3xl">↗</span>
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <span className="text-white/90 text-3xl">↗</span>
+              </a>
             </div>
           )}
         </div>
@@ -159,17 +196,13 @@ export default function ProjectCard({ project }: { project: Project }) {
     </div>
   );
 
-  if (project.link) {
+  // Desktop: wrap whole card in <a>. Touch: link is inside overlay.
+  if (project.link && !isTouch) {
     return (
-      <a
-        href={project.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ display: "block" }}
-      >
-        {content}
+      <a href={project.link} target="_blank" rel="noopener noreferrer" style={{ display: "block" }}>
+        {card}
       </a>
     );
   }
-  return content;
+  return card;
 }
