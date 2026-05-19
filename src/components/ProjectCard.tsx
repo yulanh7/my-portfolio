@@ -151,7 +151,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           </div>
           {project.link && (
             <div className="flex-1 flex items-end justify-center pt-4">
-              <span className="text-white/90 text-5xl">↗</span>
+              <span className="text-white/90 text-3xl">↗</span>
             </div>
           )}
         </div>

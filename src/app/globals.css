@@ -130,7 +130,7 @@
     position: fixed;
     width: 24px;
     height: 24px;
-    border: 1.5px solid var(--color-text-primary);
+    border: 1.5px solid var(--color-accent-brown);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
@@ -141,14 +141,35 @@
       background var(--duration-normal) var(--ease-out),
       border-color var(--duration-normal) var(--ease-out);
     background: transparent;
-    mix-blend-mode: multiply;
   }
 
+  /* Hover: outer ring expands */
   .custom-cursor.hover {
     width: 40px;
     height: 40px;
-    background: rgba(26, 16, 8, 0.08);
-    border-color: var(--color-text-primary);
+    background: rgba(184, 124, 78, 0.1);
+  }
+
+  /* Inner follower ring — slow, lags behind outer ring */
+  .cursor-follower {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    border: 1.5px solid var(--color-accent-brown);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    opacity: 0.7;
+    transition:
+      width var(--duration-normal) var(--ease-out),
+      height var(--duration-normal) var(--ease-out),
+      opacity var(--duration-normal) var(--ease-out);
+  }
+
+  /* Hide inner ring when outer ring expands on hover */
+  .cursor-follower.hover {
+    opacity: 0;
   }
 
   /* ── Particle Canvas ── */
