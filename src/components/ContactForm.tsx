@@ -133,7 +133,7 @@ export default function ContactForm() {
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLAnchorElement).style.color =
-                    "var(--color-accent-brown)";
+                    "var(--color-accent-brown-text)";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLAnchorElement).style.color =
@@ -275,7 +275,7 @@ export default function ContactForm() {
               disabled={status === "loading"}
               className="w-full flex items-center justify-center gap-2 py-3 text-sm font-medium text-white transition-opacity duration-200"
               style={{
-                background: "var(--color-accent-brown)",
+                background: "var(--color-accent-brown-btn)",
                 borderRadius: "var(--radius-full)",
                 border: "none",
                 cursor: status === "loading" ? "wait" : "pointer",
@@ -294,7 +294,7 @@ export default function ContactForm() {
             {status === "success" && (
               <p
                 className="text-sm text-center"
-                style={{ color: "var(--color-accent-green)" }}
+                style={{ color: "var(--color-text-secondary)" }}
               >
                 ✓ Message sent! I&apos;ll get back to you soon.
               </p>

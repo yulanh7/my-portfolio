@@ -14,8 +14,10 @@
     --color-text-secondary: #6b5c52; /* body copy, captions */
     --color-border: #d4c4b8; /* subtle dividers */
     --color-surface: #f5ede4; /* hover states, tag backgrounds */
-    --color-accent-green: #8ea5a3; /* sage green — cool accent */
-    --color-accent-brown: #b87c4e; /* warm brown — warm accent */
+    --color-accent-green: #8ea5a3; /* sage green — cool accent (decorative only) */
+    --color-accent-brown: #b87c4e; /* warm brown — decorative (borders, fills) */
+    --color-accent-brown-text: #7a4d26; /* dark brown — text use, passes WCAG AA */
+    --color-accent-brown-btn: #a06432; /* medium brown — solid button bg, white text 4.82:1 */
 
     /* ── Typography ── */
     --font-heading: "Cormorant Garamond", Georgia, serif;
@@ -282,7 +284,7 @@
     animation: none;
     transform: scale(1.04);
     background: var(--color-accent-green);
-    color: white;
+    color: var(--color-text-primary);
     border-color: var(--color-accent-green);
   }
 
@@ -442,18 +444,41 @@
 
   /* ── Section Decoration Animation ── */
   @keyframes decorationPop {
-    0%   { transform: scale(0)    rotate(-12deg); opacity: 0; }
-    30%  { transform: scale(1.28) rotate(5deg);  opacity: 1; }
-    50%  { transform: scale(0.86) rotate(-3deg); opacity: 1; }
-    68%  { transform: scale(1.10) rotate(2deg);  opacity: 1; }
-    82%  { transform: scale(0.96) rotate(-1deg); opacity: 1; }
-    92%  { transform: scale(1.03) rotate(0deg);  opacity: 1; }
-    100% { transform: scale(1)    rotate(0deg);  opacity: 1; }
+    0% {
+      transform: scale(0) rotate(-12deg);
+      opacity: 0;
+    }
+    30% {
+      transform: scale(1.28) rotate(5deg);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(0.86) rotate(-3deg);
+      opacity: 1;
+    }
+    68% {
+      transform: scale(1.1) rotate(2deg);
+      opacity: 1;
+    }
+    82% {
+      transform: scale(0.96) rotate(-1deg);
+      opacity: 1;
+    }
+    92% {
+      transform: scale(1.03) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
   }
 
   .decoration-item {
     opacity: 0;
-    transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+    transition:
+      opacity 0.35s var(--ease-out),
+      transform 0.35s var(--ease-out);
   }
 
   .decoration-visible .decoration-item {
@@ -461,8 +486,14 @@
   }
 
   @keyframes decorationFade {
-    from { transform: scale(1) rotate(0deg);   opacity: 1; }
-    to   { transform: scale(0.4) rotate(10deg); opacity: 0; }
+    from {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    to {
+      transform: scale(0.4) rotate(10deg);
+      opacity: 0;
+    }
   }
 
   .decoration-toggle .decoration-item {
@@ -483,19 +514,37 @@
     stroke-dashoffset: 1200;
     transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0s;
   }
-  .arc-decoration.is-visible circle:nth-child(1) { stroke-dashoffset: 0; }
-  .arc-decoration.is-visible circle:nth-child(2) { stroke-dashoffset: 0; transition-delay: 0.2s; }
-  .arc-decoration.is-visible circle:nth-child(3) { stroke-dashoffset: 0; transition-delay: 0.38s; }
+  .arc-decoration.is-visible circle:nth-child(1) {
+    stroke-dashoffset: 0;
+  }
+  .arc-decoration.is-visible circle:nth-child(2) {
+    stroke-dashoffset: 0;
+    transition-delay: 0.2s;
+  }
+  .arc-decoration.is-visible circle:nth-child(3) {
+    stroke-dashoffset: 0;
+    transition-delay: 0.38s;
+  }
 
   .arc-star {
     opacity: 0;
     transform-box: fill-box;
     transform-origin: center;
     transform: scale(0);
-    transition: opacity 0.45s ease-out, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition:
+      opacity 0.45s ease-out,
+      transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
-  .arc-decoration.is-visible .arc-star-1 { opacity: 1; transform: scale(1); transition-delay: 0.95s; }
-  .arc-decoration.is-visible .arc-star-2 { opacity: 1; transform: scale(1); transition-delay: 1.15s; }
+  .arc-decoration.is-visible .arc-star-1 {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 0.95s;
+  }
+  .arc-decoration.is-visible .arc-star-2 {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 1.15s;
+  }
 
   /* ── Mobile carousel ── */
   .mobile-carousel {

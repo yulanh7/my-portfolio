@@ -192,7 +192,7 @@ export default function Projects() {
         <SectionHeader
           label="Selected Projects"
           title="What I've Built"
-          labelColor="var(--color-accent-brown)"
+          labelColor="var(--color-accent-brown-text)"
         />
       </div>
 

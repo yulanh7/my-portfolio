@@ -68,7 +68,7 @@ export default function Contact() {
         <SectionHeader
           label="Contact  "
           title="Actively Seeking Opportunities"
-          labelColor="var(--color-accent-brown)"
+          labelColor="var(--color-accent-brown-text)"
         />
         <ContactForm />
       </div>

@@ -20,7 +20,7 @@ export default function Hero() {
             {/* Location badge */}
             <div
               className="inline-flex items-center gap-1.5 text-xs tracking-widest uppercase mb-5"
-              style={{ color: "var(--color-accent-brown)" }}
+              style={{ color: "var(--color-accent-brown-text)" }}
             >
               <span>✦</span>
               {personal.location} · {personal.status}
@@ -34,7 +34,7 @@ export default function Hero() {
               {typedTitle}
               <span
                 className="animate-pulse ml-0.5"
-                style={{ color: "var(--color-accent-brown)" }}
+                style={{ color: "var(--color-accent-brown-text)" }}
               >
                 |
               </span>
@@ -46,7 +46,7 @@ export default function Hero() {
             {/* Bio */}
             <p className=" mb-6">{personal.bio}</p>
             <p className="text-xs text-text-secondary tracking-wide mb-6">
-              <span style={{ color: "var(--color-accent-green)" }}>✦</span>
+              <span style={{ color: "var(--color-text-secondary)" }}>✦</span>
               &nbsp;{education.degree} · {education.school}
             </p>
             {/* Wave line — between bio and skills */}

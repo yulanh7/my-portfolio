@@ -72,7 +72,7 @@ export default function Experience() {
         </SectionDecoration>
 
         <div className="container">
-          <SectionHeader label="Experience" title="Where I've Worked" labelColor="var(--color-accent-brown)" />
+          <SectionHeader label="Experience" title="Where I've Worked" labelColor="var(--color-accent-brown-text)" />
 
           {/* Desktop timeline */}
           <div className="hidden md:block relative">
@@ -141,7 +141,7 @@ export default function Experience() {
                       className="text-xs tracking-wide leading-relaxed block transition-colors duration-500"
                       style={{
                         color: isActive
-                          ? "var(--color-accent-brown)"
+                          ? "var(--color-accent-brown-text)"
                           : "var(--color-text-secondary)",
                         fontWeight: isActive ? 500 : 400,
                       }}
@@ -171,7 +171,7 @@ export default function Experience() {
                     <div className="flex items-center gap-2 mb-3">
                       <span
                         className="text-xs font-medium tracking-wide"
-                        style={{ color: "var(--color-accent-brown)" }}
+                        style={{ color: "var(--color-accent-brown-text)" }}
                       >
                         {item.company}
                       </span>
@@ -214,7 +214,7 @@ export default function Experience() {
                 <h3>{item.title}</h3>
                 <p
                   className="text-xs mb-2"
-                  style={{ color: "var(--color-accent-brown)" }}
+                  style={{ color: "var(--color-accent-brown-text)" }}
                 >
                   {item.company} · {item.location}
                 </p>

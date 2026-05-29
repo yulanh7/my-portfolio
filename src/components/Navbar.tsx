@@ -82,7 +82,8 @@ export default function Navbar() {
         {/* Centre — logo */}
         <a
           href="#"
-          className="absolute left-1/2 -translate-x-1/2 font-heading italic text-2xl text-accent-brown tracking-tight hover:opacity-70 transition-opacity duration-300"
+          className="absolute left-1/2 -translate-x-1/2 font-heading italic text-2xl tracking-tight hover:opacity-70 transition-opacity duration-300"
+          style={{ color: "var(--color-accent-brown-text)" }}
         >
           RH
         </a>
@@ -110,7 +111,7 @@ export default function Navbar() {
             download="Rachel_Huang_Resume.docx"
             className="text-xs font-medium tracking-widest uppercase transition-all duration-300 hover:-translate-y-0.5 flex items-center gap-1 px-3 py-1.5 rounded-full"
             style={{
-              color: "var(--color-accent-brown)",
+              color: "var(--color-accent-brown-text)",
               border: "1px solid var(--color-border)",
               background: "var(--color-surface)",
             }}

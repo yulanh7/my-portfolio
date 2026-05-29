@@ -10,7 +10,7 @@ interface SectionHeaderProps {
 export default function SectionHeader({
   label,
   title,
-  labelColor = "var(--color-accent-green)",
+  labelColor = "var(--color-accent-brown-text)",
   className = "",
 }: SectionHeaderProps) {
   return (
