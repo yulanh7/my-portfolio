@@ -15,10 +15,12 @@ interface Project {
 export default function ProjectCard({
   project,
   mobile = false,
+  priority = false,
   onDetailToggle,
 }: {
   project: Project;
   mobile?: boolean;
+  priority?: boolean;
   onDetailToggle?: (open: boolean) => void;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -103,7 +105,8 @@ export default function ProjectCard({
               src={image.src}
               alt={`${project.title} ${index + 1}`}
               fill
-              sizes="460px"
+              sizes="(max-width: 768px) 100vw, 460px"
+              priority={priority && index === 0}
               className={`${image.type === "mobile" ? "object-contain" : "object-cover object-top"} transition-opacity duration-700 ease-out ${
                 index === currentIndex ? "opacity-100" : "opacity-0"
               }`}

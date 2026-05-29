@@ -206,7 +206,7 @@ export default function Projects() {
           onMouseLeave={() => { isPausedRef.current = false; }}
         >
           {[...projects, ...projects].map((project, i) => (
-            <ProjectCard key={`${project.title}-${i}`} project={project} />
+            <ProjectCard key={`${project.title}-${i}`} project={project} priority={i === 0} />
           ))}
         </div>
       )}
@@ -249,6 +249,7 @@ export default function Projects() {
               <ProjectCard
                 project={project}
                 mobile
+                priority={i === 0}
                 onDetailToggle={(open) => setDetailOpen(open)}
               />
             </div>
