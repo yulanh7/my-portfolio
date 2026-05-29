@@ -30,7 +30,7 @@ export default function Hero() {
             <h1 className="mb-2 font-bold">{personal.name}</h1>
 
             {/* Role */}
-            <h3 className="mb-5 text-text-primary font-bold border-l-accent text-text-secondary">
+            <h2 className="mb-5 text-text-primary font-bold border-l-accent text-text-secondary font-body text-h3">
               {typedTitle}
               <span
                 className="animate-pulse ml-0.5"
@@ -38,7 +38,7 @@ export default function Hero() {
               >
                 |
               </span>
-            </h3>
+            </h2>
             {/* <p className="text-sm text-text-secondary mb-6 tracking-wide">
               {personal.subtitle}&nbsp;·&nbsp;<em>{personal.subtitleNote}</em>
             </p> */}
