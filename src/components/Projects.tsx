@@ -35,6 +35,7 @@ export default function Projects() {
   // ── Desktop ───────────────────────────────────────────────────────
   const scrollRef = useRef<HTMLDivElement>(null);
   const isPausedRef = useRef(false);
+  const posRef = useRef(0);
 
   // ── Mobile ────────────────────────────────────────────────────────
   const mobileScrollRef = useRef<HTMLDivElement>(null);
@@ -70,20 +71,23 @@ export default function Projects() {
     const el = scrollRef.current;
     if (!el) return;
     let animId: number;
-    let pos = el.scrollLeft;
+    posRef.current = el.scrollLeft;
     const animate = () => {
       if (!isPausedRef.current) {
-        pos += 0.5;
+        posRef.current += 0.5;
         const maxScroll = el.scrollWidth / 2;
-        if (pos >= maxScroll) pos = 0;
-        el.scrollLeft = pos;
+        if (posRef.current >= maxScroll) posRef.current = 0;
+        el.scrollLeft = posRef.current;
       }
       const next = Math.round(el.scrollLeft / CARD_WIDTH) % projects.length;
       setActiveIndex((prev) => (prev !== next ? next : prev));
       animId = requestAnimationFrame(animate);
     };
-    animId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animId);
+    // Delay start so LCP measurement completes before carousel scrolls new images into view
+    const delayId = setTimeout(() => {
+      animId = requestAnimationFrame(animate);
+    }, 2000);
+    return () => { clearTimeout(delayId); cancelAnimationFrame(animId); };
   }, [isMobile]);
 
   // ── Mobile: single-shot auto-advance (loops via clone) ──────────
@@ -146,9 +150,13 @@ export default function Projects() {
       });
     } else {
       const el = scrollRef.current;
-      if (el) el.scrollLeft = i * CARD_WIDTH;
+      if (el) {
+        posRef.current = i * CARD_WIDTH;
+        el.scrollLeft = i * CARD_WIDTH;
+      }
       setActiveIndex(i);
       isPausedRef.current = true;
+      setTimeout(() => { isPausedRef.current = false; }, 1500);
     }
   };
 
@@ -206,7 +214,7 @@ export default function Projects() {
           onMouseLeave={() => { isPausedRef.current = false; }}
         >
           {[...projects, ...projects].map((project, i) => (
-            <ProjectCard key={`${project.title}-${i}`} project={project} priority={i === 0} />
+            <ProjectCard key={`${project.title}-${i}`} project={project} priority={i < 3} />
           ))}
         </div>
       )}
