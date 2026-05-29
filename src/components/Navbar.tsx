@@ -10,8 +10,35 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
+const EmailIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+  </svg>
+);
+
+const LinkedInIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+  </svg>
+);
+
+const GitHubIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+  </svg>
+);
+
+const DownloadIcon = () => (
+  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+    <polyline points="7 10 12 15 17 10" />
+    <line x1="12" y1="15" x2="12" y2="3" />
+  </svg>
+);
+
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("about");
+  const [menuOpen, setMenuOpen] = useState(false);
   const hasScrolledRef = useRef(false);
 
   useEffect(() => {
@@ -39,99 +66,180 @@ export default function Navbar() {
     window.dispatchEvent(new CustomEvent("sectionChange", { detail: activeSection }));
   }, [activeSection]);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setMenuOpen(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg-primary backdrop-blur-sm">
-      <div className="container flex items-center justify-between h-16">
-        {/* Left — contact icons */}
-        <div className="flex items-center gap-5">
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg-primary backdrop-blur-sm">
+        <div className="container flex items-center justify-between h-16">
+
+          {/* Left — social icons */}
+          <div className="flex items-center gap-5">
+            <a href={`mailto:${personal.email}`} aria-label="Email"
+              className="text-text-secondary hover:text-text-primary transition-colors duration-300">
+              <EmailIcon />
+            </a>
+            <a href={personal.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+              className="text-text-secondary hover:text-text-primary transition-colors duration-300">
+              <LinkedInIcon />
+            </a>
+            <a href={personal.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+              className="text-text-secondary hover:text-text-primary transition-colors duration-300">
+              <GitHubIcon />
+            </a>
+          </div>
+
+          {/* Centre — logo (absolute so it never shifts) */}
           <a
-            href={`mailto:${personal.email}`}
-            aria-label="Email"
-            className="text-text-secondary hover:text-text-primary transition-colors duration-300"
+            href="#"
+            className="absolute left-1/2 -translate-x-1/2 font-heading italic text-2xl tracking-tight hover:opacity-70 transition-opacity duration-300"
+            style={{ color: "var(--color-accent-brown-text)" }}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-            </svg>
+            RH
           </a>
 
-          <a
-            href={personal.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="text-text-secondary hover:text-text-primary transition-colors duration-300"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
-            </svg>
-          </a>
+          {/* Right — desktop nav (lg+) */}
+          <nav className="hidden xl:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className={`text-xs font-medium tracking-widest uppercase transition-all duration-300 hover:-translate-y-0.5 ${
+                  activeSection === link.href.replace("#", "")
+                    ? "text-text-primary border-b border-text-primary pb-0.5"
+                    : "text-text-secondary hover:text-text-primary"
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+            <span style={{ color: "var(--color-border)", fontSize: "1rem" }}>|</span>
+            <a
+              href="/Rachel_Huang_Resume.docx"
+              download="Rachel_Huang_Resume.docx"
+              className="text-xs font-medium tracking-widest uppercase transition-all duration-300 hover:-translate-y-0.5 flex items-center gap-1 px-3 py-1.5 rounded-full"
+              style={{
+                color: "var(--color-accent-brown-text)",
+                border: "1px solid var(--color-border)",
+                background: "var(--color-surface)",
+              }}
+            >
+              <DownloadIcon /> CV
+            </a>
+          </nav>
 
-          <a
-            href={personal.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="text-text-secondary hover:text-text-primary transition-colors duration-300"
+          {/* Right — hamburger (below lg) */}
+          <button
+            className="xl:hidden flex flex-col justify-center items-end w-8 h-8 gap-1.5"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
-            </svg>
-          </a>
+            <span className="block w-5 h-0.5 rounded-full transition-all duration-300"
+              style={{ background: "var(--color-text-primary)" }} />
+            <span className="block w-5 h-0.5 rounded-full transition-all duration-300"
+              style={{ background: "var(--color-text-primary)" }} />
+            <span className="block w-3.5 h-0.5 rounded-full transition-all duration-300"
+              style={{ background: "var(--color-text-primary)" }} />
+          </button>
+        </div>
+      </header>
+
+      {/* ── Mobile menu ── */}
+
+      {/* Backdrop */}
+      <div
+        aria-hidden="true"
+        onClick={() => setMenuOpen(false)}
+        className="fixed inset-0 z-40 xl:hidden"
+        style={{
+          background: "rgba(20, 12, 8, 0.55)",
+          opacity: menuOpen ? 1 : 0,
+          pointerEvents: menuOpen ? "auto" : "none",
+          transition: "opacity 400ms cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
+      />
+
+      {/* Slide panel */}
+      <div
+        className="fixed top-0 right-0 bottom-0 z-50 xl:hidden flex flex-col"
+        style={{
+          width: "min(320px, 85vw)",
+          background: "var(--color-text-primary)",
+          transform: menuOpen ? "translateX(0)" : "translateX(100%)",
+          transition: "transform 400ms cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
+      >
+        {/* Close */}
+        <div className="flex justify-end items-center px-6 h-16 flex-shrink-0">
+          <button
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+            className="text-white/50 hover:text-white transition-colors duration-200 text-3xl leading-none pb-0.5"
+          >
+            ×
+          </button>
         </div>
 
-        {/* Centre — logo */}
-        <a
-          href="#"
-          className="absolute left-1/2 -translate-x-1/2 font-heading italic text-2xl tracking-tight hover:opacity-70 transition-opacity duration-300"
-          style={{ color: "var(--color-accent-brown-text)" }}
-        >
-          RH
-        </a>
-
-        {/* Right — nav links */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
+        {/* Nav links */}
+        <nav className="flex-1 flex flex-col justify-center px-10 gap-7">
+          {navLinks.map((link, i) => (
             <a
               key={link.label}
               href={link.href}
-              className={`text-xs font-medium tracking-widest uppercase transition-all duration-300 hover:-translate-y-0.5 ${
-                activeSection === link.href.replace("#", "")
-                  ? "text-text-primary border-b border-text-primary pb-0.5"
-                  : "text-text-secondary hover:text-text-primary"
-              }`}
+              onClick={() => setMenuOpen(false)}
+              className="font-heading italic text-white/90 hover:text-white transition-colors duration-200"
+              style={{
+                fontSize: "clamp(2rem, 8vw, 2.5rem)",
+                opacity: menuOpen ? 1 : 0,
+                transform: menuOpen ? "translateX(0)" : "translateX(20px)",
+                transition: `opacity 350ms ease ${100 + i * 70}ms, transform 350ms cubic-bezier(0.16,1,0.3,1) ${100 + i * 70}ms`,
+              }}
             >
               {link.label}
             </a>
           ))}
-          <span style={{ color: "var(--color-border)", fontSize: "1rem" }}>
-            |
-          </span>
+        </nav>
+
+        {/* Bottom — social icons + CV */}
+        <div
+          className="flex items-center gap-4 px-10 pb-10 flex-shrink-0"
+          style={{
+            opacity: menuOpen ? 1 : 0,
+            transition: "opacity 350ms ease 400ms",
+          }}
+        >
+          <a href={`mailto:${personal.email}`} aria-label="Email"
+            className="text-white/40 hover:text-white/80 transition-colors duration-200">
+            <EmailIcon />
+          </a>
+          <a href={personal.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+            className="text-white/40 hover:text-white/80 transition-colors duration-200">
+            <LinkedInIcon />
+          </a>
+          <a href={personal.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+            className="text-white/40 hover:text-white/80 transition-colors duration-200">
+            <GitHubIcon />
+          </a>
+          <div className="flex-1" />
           <a
             href="/Rachel_Huang_Resume.docx"
             download="Rachel_Huang_Resume.docx"
-            className="text-xs font-medium tracking-widest uppercase transition-all duration-300 hover:-translate-y-0.5 flex items-center gap-1 px-3 py-1.5 rounded-full"
-            style={{
-              color: "var(--color-accent-brown-text)",
-              border: "1px solid var(--color-border)",
-              background: "var(--color-surface)",
-            }}
+            className="text-xs font-medium tracking-widest uppercase flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-200 hover:bg-white/10"
+            style={{ color: "white", border: "1px solid rgba(255,255,255,0.2)" }}
           >
-            <svg
-              width="11"
-              height="11"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-            CV
+            <DownloadIcon /> CV
           </a>
-        </nav>
+        </div>
       </div>
-    </header>
+    </>
   );
 }
