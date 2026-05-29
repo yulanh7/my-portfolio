@@ -181,14 +181,20 @@ export default function ProjectCard({
           {/* Link — rendered as <a> inside overlay so touch can tap it */}
           {project.link && (
             <div className="flex-1 flex items-end justify-center pt-4">
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-              >
+              {/* On desktop the whole card is already wrapped in <a>, so only
+                  render a nested link on touch to avoid invalid HTML nesting. */}
+              {isTouch ? (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <span className="text-white/90 text-3xl">↗</span>
+                </a>
+              ) : (
                 <span className="text-white/90 text-3xl">↗</span>
-              </a>
+              )}
             </div>
           )}
         </div>
